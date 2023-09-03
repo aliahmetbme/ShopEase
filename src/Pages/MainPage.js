@@ -1,21 +1,17 @@
 import React from "react";
 import { View, Button, StyleSheet, SafeAreaView, FlatList, Text } from "react-native";
-import { Provider, useDispatch, useSelector } from "react-redux";
-import store from "./Redux/store";
-import { fetchTodos } from "./Redux/slice";
-import ProductsDescCards from "./Components/ProductsDescCards";
-import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import { NavigationContainer } from '@react-navigation/native';
-
-const Stack = createNativeStackNavigator();
+import { useDispatch, useSelector } from "react-redux";
+import { fetchTodos } from "../Redux/slice";
+import ProductsDescCards from "../Components/ProductsDescCards";
 
 export default function Main() {
   const dispatch = useDispatch();
   const todos = useSelector((state) => state.todos);
+  const categories = useSelector((state) => state.category)
   console.log(todos)
 
   React.useEffect(() => {
-    dispatch(fetchTodos("https://dummyjson.com/products"))
+    dispatch(fetchTodos("https://dummyjson.com/products?limit=0"))
   }, [])
 
   const renderData = ({ item }) => {
@@ -32,6 +28,10 @@ export default function Main() {
 
   return (
     <SafeAreaView style={{ flex: 1, backgroundColor: "#DADADA" }}>
+      <FlatList 
+        horizontal={true}
+        data={categories.fav_categories}
+        renderItem={({ item }) => <Text>{item}</Text>} />
       <FlatList
         numColumns={2}
         data={todos.data.products}
