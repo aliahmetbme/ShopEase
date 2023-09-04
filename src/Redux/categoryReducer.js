@@ -1,12 +1,18 @@
-const INITAL_STATE = {
-    fav_categories : []
-}
+const INITIAL_STATE = {
+    fav_categories: []
+};
 
-export default (state = INITAL_STATE, action) => {
+export default (state = INITIAL_STATE, action) => {
     switch (action.type) {
         case "SET_CATEGORIES":
-            return {...state, fav_categories: [...state.fav_categories, action.payload]}
-        default :
-            return state
+            if (!state.fav_categories.includes(action.payload)) {
+                return {
+                    ...state,
+                    fav_categories: [...state.fav_categories, action.payload]
+                };
+            }
+            return state; // Eğer action.payload zaten dizide varsa, state'i değiştirme
+        default:
+            return state;
     }
-}
+};

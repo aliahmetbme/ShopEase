@@ -1,14 +1,15 @@
 import 'react-native-gesture-handler';
-import { FlatList, SafeAreaView, StyleSheet, Text, View } from 'react-native'
+import { FlatList, SafeAreaView, StyleSheet } from 'react-native'
 import React, { useEffect } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
-import { fetchTodos } from '../Redux/slice';
+import { fetchCategories } from '../Redux/categoriesSlice';
 import CategoriesCard from '../Components/CategoriesCard';
 
 
 const Categories = () => {
     const dispatch = useDispatch();
-    const variables = useSelector((state) => state.todos)
+    const variables = useSelector((state) => state.categories)
+    console.log(variables)
     
     function renderItem({item}) {
         return(
@@ -17,7 +18,7 @@ const Categories = () => {
     }
 
     useEffect(() => {
-        dispatch(fetchTodos('https://dummyjson.com/products/categories'))
+        dispatch(fetchCategories('https://dummyjson.com/products/categories'))
     }, [])
 
     return (
@@ -25,7 +26,7 @@ const Categories = () => {
             <FlatList
                 columnWrapperStyle={{flexWrap:"wrap"}}
                 numColumns={2}
-                data={variables.data}
+                data={variables.categories}
                 renderItem={renderItem}/>
         </SafeAreaView>
     )

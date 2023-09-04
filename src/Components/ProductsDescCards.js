@@ -1,4 +1,4 @@
-import { Dimensions, StyleSheet, Text, View, Image } from 'react-native'
+import { Dimensions, StyleSheet, Text, View, Image, TouchableOpacity } from 'react-native'
 import React from 'react'
 import StarRating from "react-native-star-rating-widget"
 
@@ -8,7 +8,7 @@ const ProductsDescCards = (props) => {
     })
 
     return (
-        <View style={styles.container}>
+        <TouchableOpacity style={styles.container}>
             <Image source={{uri : props.images[0]}} style={{width:250,height:100, alignSelf:"center",resizeMode:"contain"}}></Image>
             <View style={{ flexDirection: "row", flexWrap: "wrap", marginVertical: 10, alignItems: "flex-end" }}>
                 <Text ellipsizeMode='tail' numberOfLines={20} style={styles.brand}>{props.brand}</Text>
@@ -23,7 +23,7 @@ const ProductsDescCards = (props) => {
                 <Text style={{ fontSize: 12, verticalAlign:"middle" }}>{props.rate}</Text>
             </View>
             <Text style={styles.price}>{props.price} TL</Text>
-        </View>
+        </TouchableOpacity>
     )
 }
 
