@@ -3,12 +3,13 @@ import React from 'react'
 import StarRating from "react-native-star-rating-widget"
 
 const ProductsDescCards = (props) => {
+    try {
     const sliderData = props.images.map((item) => {
         return {img : item}
     })
 
     return (
-        <TouchableOpacity style={styles.container}>
+        <TouchableOpacity style={styles.container} onPress={props.onPress}>
             <Image source={{uri : props.images[0]}} style={{width:100,height:100, alignSelf:"center",resizeMode:"contain"}}></Image>
             <View style={{ flexDirection: "row", flexWrap: "wrap", marginVertical: 10, alignItems: "flex-end" }}>
                 <Text ellipsizeMode='tail' numberOfLines={20} style={styles.brand}>{props.brand}</Text>
@@ -25,6 +26,9 @@ const ProductsDescCards = (props) => {
             <Text style={styles.price}>{props.price} TL</Text>
         </TouchableOpacity>
     )
+    } catch (error) {
+        console.log(error)
+    }
 }
 
 export default ProductsDescCards

@@ -1,11 +1,13 @@
 import React from "react";
-import { View, Button, StyleSheet, SafeAreaView, FlatList, Text } from "react-native";
+import { View, SafeAreaView, FlatList, Text } from "react-native";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchTodos } from "../Redux/productSlice";
 import ProductsDescCards from "../Components/ProductsDescCards";
 import CategoryDisplayingCard from "../Components/CategoryDisplayingCard";
 import SearchBar from "../Components/SearchBar";
-export default function Main() {
+
+export default function MainPage({navigation}) {
+  
   const dispatch = useDispatch();
   const todos = useSelector((state) => state.todos);
   const categories = useSelector((state) => state.category)
@@ -23,14 +25,17 @@ export default function Main() {
   const renderData = ({ item }) => {
     return (
       <ProductsDescCards
+        onPress={() => navigation.navigate("Details")}
         brand={item.brand}
         description={item.description}
         images={item.images}
         name={item.title}
         rate={item.rating}
-        price={item.price}></ProductsDescCards>
-    )
-  }
+        price={item.price}
+      />
+    );
+  };
+
 
   return (
     <SafeAreaView style={{ flex: 1, backgroundColor: "#DADADA" }}>

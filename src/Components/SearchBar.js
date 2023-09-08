@@ -5,13 +5,12 @@ import { useDispatch } from 'react-redux'
 import { fetchTodos } from '../Redux/productSlice'
 
 const searchBar = () => {
-  
+
   const dispatch = useDispatch()
   const [text, setText] = useState("")
 
   function searchProduct() {
     dispatch(fetchTodos(`https://dummyjson.com/products/search?q=${text}`))
-    setText("")
   }
 
   return (
@@ -20,11 +19,15 @@ const searchBar = () => {
         <Icon name="search-outline" color="black" size={25} style={styles.icon} />
       </TouchableOpacity>
       <TextInput
+        style={{flex:1}}
         autoCapitalize='none'
         placeholder='Search...'
         value={text}
         onChangeText={(newText) => setText(newText)}
       />
+      <TouchableOpacity onPress={() => setText("")}>
+        <Icon name="trash-bin-outline" color="black" size={25}/>
+      </TouchableOpacity>
     </View>
   )
 }
