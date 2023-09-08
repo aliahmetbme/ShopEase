@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { fetchTodos } from "../Redux/productSlice";
 import ProductsDescCards from "../Components/ProductsDescCards";
 import CategoryDisplayingCard from "../Components/CategoryDisplayingCard";
-
+import SearchBar from "../Components/SearchBar";
 export default function Main() {
   const dispatch = useDispatch();
   const todos = useSelector((state) => state.todos);
@@ -35,6 +35,7 @@ export default function Main() {
   return (
     <SafeAreaView style={{ flex: 1, backgroundColor: "#DADADA" }}>
       <View>
+      <SearchBar />
       <FlatList 
         showsHorizontalScrollIndicator={false}
         horizontal={true}

@@ -9,14 +9,14 @@ const ProductsDescCards = (props) => {
 
     return (
         <TouchableOpacity style={styles.container}>
-            <Image source={{uri : props.images[0]}} style={{width:250,height:100, alignSelf:"center",resizeMode:"contain"}}></Image>
+            <Image source={{uri : props.images[0]}} style={{width:100,height:100, alignSelf:"center",resizeMode:"contain"}}></Image>
             <View style={{ flexDirection: "row", flexWrap: "wrap", marginVertical: 10, alignItems: "flex-end" }}>
                 <Text ellipsizeMode='tail' numberOfLines={20} style={styles.brand}>{props.brand}</Text>
                 <Text numberOfLines={20} style={styles.name}>{props.name}</Text>
             </View>
-            <View style={{ flexDirection: "row", justifyContent: "space-between" }}>
+            <View style={{ flexDirection: "row", justifyContent: "space-between", flexWrap:"wrap" }}>
                 <StarRating
-                    style={{ marginHorizontal: -5 }}
+                    style={{ marginLeft: -5 }}
                     onChange={() => { }}
                     rating={props.rate}
                     starSize={18}></StarRating>
