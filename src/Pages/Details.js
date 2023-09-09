@@ -14,6 +14,7 @@ const Details = ({ route }) => {
   useEffect(() => {
     dispatch(fetchDetails(`https://dummyjson.com/products/${id}`))
   }, [])
+
   const oldPrice = (detailedData?.price * 100) / (100 - detailedData?.discountPercentage)
   const sliderData = detailedData?.images?.map((item) => {
     return { img: item }
@@ -48,7 +49,9 @@ const Details = ({ route }) => {
               onChange={() => {}}>
             </StarRating>
           </View>
-          <Icon name="heart-outline" size={25} color="black"></Icon>
+          <TouchableOpacity onPress={() => {dispatch({type: "ADD_FAVORITES" , payload: detailedData})}}>
+            <Icon name="heart-outline" size={25} color="black"></Icon>
+          </TouchableOpacity>
         </View>
         <View style={styles.description}>
           <Text style={styles.descriptionDetails}>{detailedData.description}</Text>

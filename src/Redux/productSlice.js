@@ -31,14 +31,17 @@ const todosSlice = createSlice({
         builder.addCase(fetchTodos.pending, (state, action) => {
             state.loading = true;
             state.error = ""
+            console.log(state.error)
         })
         builder.addCase(fetchTodos.fulfilled, (state, action) => {
            state.data = action.payload;
            state.loading = false 
+           console.log(state.error)
         })
         builder.addCase(fetchTodos.rejected, (state, action) => {
             state.loading = false,
             state.error = action.error.message
+            console.log(state.error)
         })
         builder.addCase(fetchDetails.pending, (state, action) => {
             state.loadingDetails = true;

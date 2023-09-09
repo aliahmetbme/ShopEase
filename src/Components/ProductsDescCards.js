@@ -20,7 +20,7 @@ const ProductsDescCards = (props) => {
                     starSize={18}></StarRating>
                 <Text style={{ fontSize: 12, verticalAlign:"middle" }}>{props.rate}</Text>
             </View>
-            <Text style={styles.price}>{props.price} TL</Text>
+            <Text style={styles.price}>{props.price} $</Text>
         </TouchableOpacity>
     )
     } catch (error) {

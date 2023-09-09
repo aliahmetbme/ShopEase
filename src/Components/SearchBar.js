@@ -10,12 +10,12 @@ const searchBar = () => {
   const [text, setText] = useState("")
 
   function searchProduct() {
-    dispatch(fetchTodos(`https://dummyjson.com/products/search?limit=0?q=${text}`))
+    dispatch(fetchTodos(`https://dummyjson.com/products/search?q=${text}`))
   }
 
   return (
     <View style={styles.container}>
-      <TouchableOpacity onPress={searchProduct}>
+      <TouchableOpacity onPress={() => searchProduct()}>
         <Icon name="search-outline" color="black" size={25} style={styles.icon} />
       </TouchableOpacity>
       <TextInput

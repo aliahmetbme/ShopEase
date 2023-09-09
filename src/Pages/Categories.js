@@ -25,7 +25,7 @@ const Categories = () => {
         <SafeAreaView style={{flex:1}} >
             <FlatList
                 columnWrapperStyle={{flexWrap:"wrap"}}
-                numColumns={2}
+                numColumns={4}
                 data={variables.categories}
                 renderItem={renderItem}/>
         </SafeAreaView>
