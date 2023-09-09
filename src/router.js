@@ -14,6 +14,7 @@ import Categories from "./Pages/Categories";
 import MyBag from "./Pages/MyBag";
 import Favorites from "./Pages/Favorites";
 import Details from './Pages/Details';
+import Collections from "./Pages/Collections"
 
 const Stack = createStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -43,6 +44,7 @@ export default function ProviderApp() {
           <Tab.Navigator screenOptions={{ headerShown: false }}>
             <Tab.Screen name="MainStack" component={MainStack} />
             <Tab.Screen name="Categories" component={Categories} />
+            <Tab.Screen name="Collections" component={Collections} />
             <Tab.Screen name="MyBag" component={MyBag} />
             <Tab.Screen name="Favorites" component={Favorites} />
           </Tab.Navigator>

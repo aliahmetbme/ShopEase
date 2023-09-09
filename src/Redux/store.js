@@ -3,6 +3,8 @@ import todosSlice from "./productSlice"
 import categoriesSlice from "./categoriesSlice";
 import categoryReducer from "./categoryReducer";
 import favoritesReducer from "./favoritesReducer";
+import collectionsReducer from "./collectionsReducer";
+
 
 export default configureStore({
     reducer :{
@@ -10,5 +12,6 @@ export default configureStore({
         category : categoryReducer,
         categories: categoriesSlice,
         favorites:  favoritesReducer,
+        collections : collectionsReducer,
     }        
 })
