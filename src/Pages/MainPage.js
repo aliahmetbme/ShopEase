@@ -7,7 +7,7 @@ import CategoryDisplayingCard from "../Components/CategoryDisplayingCard";
 import SearchBar from "../Components/SearchBar";
 
 export default function MainPage({navigation}) {
-  
+
   const dispatch = useDispatch();
   const todos = useSelector((state) => state.todos);
   const categories = useSelector((state) => state.category)
@@ -25,10 +25,10 @@ export default function MainPage({navigation}) {
   const renderData = ({ item }) => {
     return (
       <ProductsDescCards
-        onPress={() => navigation.navigate("Details")}
+        onPress={() => navigation.navigate("Details", {id : item.id })}
         brand={item.brand}
         description={item.description}
-        images={item.images}
+        thumbnail={item.thumbnail}
         name={item.title}
         rate={item.rating}
         price={item.price}

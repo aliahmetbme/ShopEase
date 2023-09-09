@@ -10,7 +10,7 @@ const searchBar = () => {
   const [text, setText] = useState("")
 
   function searchProduct() {
-    dispatch(fetchTodos(`https://dummyjson.com/products/search?q=${text}`))
+    dispatch(fetchTodos(`https://dummyjson.com/products/search?limit=0?q=${text}`))
   }
 
   return (

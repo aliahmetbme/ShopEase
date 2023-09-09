@@ -4,13 +4,10 @@ import StarRating from "react-native-star-rating-widget"
 
 const ProductsDescCards = (props) => {
     try {
-    const sliderData = props.images.map((item) => {
-        return {img : item}
-    })
 
     return (
         <TouchableOpacity style={styles.container} onPress={props.onPress}>
-            <Image source={{uri : props.images[0]}} style={{width:100,height:100, alignSelf:"center",resizeMode:"contain"}}></Image>
+            <Image source={{uri : props.thumbnail}} style={{width:100,height:100, alignSelf:"center",resizeMode:"contain"}}></Image>
             <View style={{ flexDirection: "row", flexWrap: "wrap", marginVertical: 10, alignItems: "flex-end" }}>
                 <Text ellipsizeMode='tail' numberOfLines={20} style={styles.brand}>{props.brand}</Text>
                 <Text numberOfLines={20} style={styles.name}>{props.name}</Text>
