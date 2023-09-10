@@ -5,8 +5,11 @@ import LottieView from 'lottie-react-native';
 import BagButton from '../Components/BagButton';
 import ProductsInBag from '../Components/ProductsInBag';
 const MyBag = ({navigation}) => {
+  try {
   const data = useSelector((state) => state.bag);
   console.log(data.bag[0])
+  const total = data.bag.reduce((accumulator, currentItem) => accumulator + currentItem.price, 0);
+  console.log(total)
 
   const renderData = ({ item }) => {
     return (
@@ -20,10 +23,10 @@ const MyBag = ({navigation}) => {
         price={item.price}
         stock={item.stock}
         amount={item.amount}
+        id={item.id}
       />
     );
   };
-
 
 
   if (Array.isArray(data.bag) && data.bag.length === 0) {
@@ -48,7 +51,11 @@ const MyBag = ({navigation}) => {
       </SafeAreaView>
     );
   }
+} catch(error){
+  console.log(error)
 }
+}
+
 
 export default MyBag;
 

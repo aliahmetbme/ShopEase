@@ -1,15 +1,15 @@
 import { StyleSheet, Text, TouchableOpacity, View } from 'react-native'
 import React from 'react'
 
-const AmountComponent = ({amount}) => {
+const AmountComponent = ({amount, decrease, increase}) => {
 
     return (
         <View style={styles.container}>
-            <TouchableOpacity style={[styles.button]}>
+            <TouchableOpacity onPress={increase} style={[styles.button]}>
                 <Text style={styles.text}>+</Text>
             </TouchableOpacity>
             <Text style={styles.amount}>{amount}</Text>
-            <TouchableOpacity style={[styles.button, {borderRightWidth:0,borderLeftWidth:1}]}>
+            <TouchableOpacity onPress={decrease} style={[styles.button, {borderRightWidth:0,borderLeftWidth:1}]}>
                 <Text style={styles.text}>-</Text>
             </TouchableOpacity>
         </View>

@@ -2,9 +2,33 @@ import { Dimensions, StyleSheet, Text, View, Image, TouchableOpacity } from 'rea
 import React from 'react'
 import StarRating from "react-native-star-rating-widget"
 import AmountComponent from './AmountComponent'
+import { useSelector, useDispatch } from 'react-redux'
 
 const ProductsInBag = (props) => {
+    const dispatch = useDispatch()
+    const id = props.id;
+    const amount = props.amount;
+    const price = props.price
     try {
+    function decrease() {
+        let newAmount = amount - 1;
+        let newPrice = (price / amount) * newAmount
+
+        dispatch({ type: "UPDATE_AMOUNT", payload: { id, newAmount, newPrice } });
+        console.log("decrease");
+    }
+
+    function increase() {
+        let newAmount = amount + 1;
+        let newPrice = (price / amount) * newAmount
+
+        dispatch({ type: "UPDATE_AMOUNT", payload: { id, newAmount, newPrice } });
+        console.log("increase", newAmount);
+    }
+
+
+
+
         return (
             <TouchableOpacity style={styles.container} onPress={props.onPress}>
                 <View>
@@ -17,7 +41,7 @@ const ProductsInBag = (props) => {
                         <Text style={styles.name}>{props.name}</Text>
                     </View>
                     <View style={{flexDirection:"row", flex:1,justifyContent:"space-between"}}>
-                        <AmountComponent amount={props.amount}/>
+                        <AmountComponent amount={props.amount} decrease={decrease} increase={() => increase()}/>
                         <Text style={styles.price}>{props.price} $</Text>
                     </View>
                 </View>

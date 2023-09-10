@@ -1,6 +1,8 @@
+import { Alert } from "react-native";
+
 const INITIAL_STATE = {
-    bag:[],
-    ProductsInBagIds:[]
+    bag: [],
+    ProductsInBagIds: []
 }
 
 export default (state = INITIAL_STATE, action) => {
@@ -14,16 +16,22 @@ export default (state = INITIAL_STATE, action) => {
                 };
             }
             return state; // Eğer action.payload zaten dizide varsa, state'i değiştirme
-        // case 'UPDATE_ITEM_VALUE':
-        //     const { itemId, newKeyValue } = action.payload;
-        //     const updatedItems = state.bag.map(item => {
-        //     if (item.id === itemId) {
-        //         // Değiştirmek istediğiniz key'i güncelle
-        //         return { ...item, amount: newKeyValue };
-        //     }
-        //        return item;
-        //     }); 
-        //    return { ...state, bag: updatedItems };
+        case "UPDATE_AMOUNT":
+            const { id, newAmount, newPrice } = action.payload;
+            if (newAmount === 0) {
+                const updatedItems = state.bag.filter((item) => item.id !== id)
+                return { ...state, bag: updatedItems };
+            }
+            const updatedItems = state.bag.map(item => {
+                if (item.id === id) {
+                    // Değiştirmek istediğiniz key'i güncelle
+
+                    return { ...item, amount: newAmount, price: newPrice };
+                }
+                return item;
+            });
+            return { ...state, bag: updatedItems };
+
         default:
             return state;
     }
