@@ -11,7 +11,7 @@ import { FlatList } from 'react-native-gesture-handler';
 
 const Details = ({ route }) => {
   const detailedData = useSelector(state => state.todos).detailedData
-  const collections = useSelector(state => state.collections).collections
+  const collectionsData = useSelector(state => state.collections).collections
 
   const dispatch = useDispatch()
   const [isModalVisible, setModalVisible] = useState(false);
@@ -87,9 +87,9 @@ const Details = ({ route }) => {
         <AddBagButton />
       </SafeAreaView>
       <Modal style={{justifyContent:"flex-end",margin:0}} swipeDirection="down" onBackdropPress={toggleModal} propagateSwipe={true}	hideModalContentWhileAnimating={true} useNativeDriver={true} backdropOpacity={0.5} isVisible={isModalVisible}>
-        <SafeAreaView style={{ flex: 0.2 , backgroundColor:"#ffffff",borderTopWidth:5,borderColor:"#FF7F00"}}>
+        <SafeAreaView style={{ flex: 0.3, backgroundColor:"#ffffff",borderTopWidth:5,borderColor:"#FF7F00"}}>
            <FlatList
-            data={Object.keys(collections)}
+            data={Object.keys(collectionsData)}
             renderItem={renderData}
             keyExtractor={(item) => item.toString()}
           />
