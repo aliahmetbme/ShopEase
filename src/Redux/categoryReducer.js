@@ -5,7 +5,7 @@ const INITIAL_STATE = {
 export default (state = INITIAL_STATE, action) => {
     switch (action.type) {
         case "SET_CATEGORIES":
-            if (state.fav_categories.includes(action.payload)) {
+            if (!state.fav_categories.includes(action.payload)) {
                 return {
                     ...state,
                     fav_categories: [...state.fav_categories, action.payload]

@@ -11,7 +11,7 @@ const CategoriesCard = ({ name }) => {
     dispatch({ type: "SET_CATEGORIES", payload: name })
   }
   return (
-    <TouchableOpacity onPress={handlePress} style={[styles.container,  data.fav_categories.includes(name) ? {backgroundColor:  "#292929" } : null]}>
+    <TouchableOpacity onPress={handlePress} style={[styles.container,  data.fav_categories.includes(name) ? {backgroundColor:  "#FF7F00" } : null]}>
       <Text style={[styles.categoryName,  data.fav_categories.includes(name) ? {color:  "white" } : null]}>{name}</Text>
     </TouchableOpacity>
   )

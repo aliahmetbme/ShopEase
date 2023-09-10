@@ -1,5 +1,5 @@
 import { SafeAreaView, StyleSheet, Text, View, StatusBar, Button, ImageBackground, Touchable, TouchableOpacity, ScrollView } from 'react-native'
-import React, { useEffect, useState, useCallback, useMemo, useRef } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useSelector, useDispatch } from 'react-redux';
 import { fetchDetails } from '../Redux/productSlice';
 import { ImageSlider } from 'react-native-image-slider-banner';
@@ -25,6 +25,7 @@ const Details = ({ route }) => {
   }, [])
 
   const oldPrice = (detailedData?.price * 100) / (100 - detailedData?.discountPercentage)
+  
   const sliderData = detailedData?.images?.map((item) => {
     return { img: item }
   })
