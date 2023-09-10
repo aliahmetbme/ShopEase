@@ -1,9 +1,13 @@
 import { StyleSheet, Text, Touchable, TouchableOpacity, View } from 'react-native'
 import React from 'react'
+import { useDispatch, useSelector } from 'react-redux'
 
 const AddBagButton = () => {
+  const dispatch = useDispatch()
+  const amount = 1;
+  const detailedData = useSelector(state => state.todos).detailedData
   return (
-    <TouchableOpacity onPress={() => {}} style={styles.container}>
+    <TouchableOpacity onPress={() => dispatch({type:"ADD_BAG", payload:{...detailedData,amount:amount}})} style={styles.container}>
       <Text style={{color:"white", fontWeight:"bold"}}>ADD BAG</Text> 
     </TouchableOpacity>
   )
