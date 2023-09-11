@@ -57,7 +57,7 @@ export default ProductsInBag
 const styles = StyleSheet.create({
     container: {
         margin: 10,
-        backgroundColor: "white",
+        backgroundColor: "#f8fafc",
         padding: 12,
         borderRadius: 10,
         flexDirection: "row",

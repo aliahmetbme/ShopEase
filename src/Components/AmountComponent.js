@@ -9,7 +9,7 @@ const AmountComponent = ({amount, decrease, increase}) => {
                 <Text style={styles.text}>+</Text>
             </TouchableOpacity>
             <Text style={styles.amount}>{amount}</Text>
-            <TouchableOpacity onPress={decrease} style={[styles.button, {borderRightWidth:0,borderLeftWidth:1}]}>
+            <TouchableOpacity onPress={decrease} style={styles.button}>
                 <Text style={styles.text}>-</Text>
             </TouchableOpacity>
         </View>
@@ -22,27 +22,29 @@ const styles = StyleSheet.create({
     container: {
         alignSelf: "flex-end",
         flexDirection:"row",
-        backgroundColor:"#DADADA",
-        borderRadius:15,
-        alignItems:"center"
+        backgroundColor:"white",
+        borderRadius:20,
+        alignItems:"center",
+        borderWidth:2,
+        borderColor:"#DADADA",
 
     },
     button:{
         marginHorizontal:5,
         alignItems:"center",
         justifyContent:"center",
-        borderRightWidth:1,
-        borderColor:"black",
-        padding:10
+        padding:5
     },
     text:{
         fontSize:16,
         fontWeight:"900",
+        borderRadius:20,
+        color:"#FF7F00",
     },
     amount:{
-        padding:10,
         fontSize:20,
-        fontWeight:"800",
-        color:"black"
+        color:"#FF7F00",
+        paddingHorizontal:10,
+
     }
 })

@@ -16,10 +16,12 @@ import MyBag from "./Pages/MyBag";
 import Favorites from "./Pages/Favorites";
 import Details from './Pages/Details';
 import Collections from "./Pages/Collections"
+import PaidPage from './Pages/PaidPage';
+import ComplatedPage from './Pages/ComplatedPage';
 
 const Stack = createStackNavigator();
 const Tab = createBottomTabNavigator();
-const Pages = "Details"
+const Pages = ["Details", "PaidPage","ComplatedPage"]
 
 const tabBarStyle = {
   backgroundColor: "#DADADA",
@@ -41,15 +43,35 @@ function MainStack({ navigation, route }) {
     </Stack.Navigator>
   )
 }
-export default function ProviderApp() {
 
+function PaidStack({ navigation, route }) {
+  const data = useSelector(state => state.todos)
+
+  useBottomNavigatorVisible(
+    { Pages: Pages, Style: tabBarStyle },
+    { route, navigation },
+  )
+  return (
+
+    <Stack.Navigator screenOptions={{ headerShown: false }}>
+      <Stack.Screen name="MyBag" component={MyBag}></Stack.Screen>
+      <Stack.Screen name="PaidPage" component={PaidPage}></Stack.Screen>
+      <Stack.Screen name="ComplatedPage" component={ComplatedPage}></Stack.Screen>
+
+    </Stack.Navigator>
+  )
+}
+
+function App() {
+
+  const bag = useSelector(state => state.bag).bag
+  const  amount_products_inBag = bag.length
 
   const TabBarIcon = ({ color, size, iconName }) => {
     return <Icon name={iconName} size={size} color={color} />;
   };
 
   return (
-    <Provider store={store}>
       <GestureHandlerRootView style={{ flex: 1 }}>
         <NavigationContainer>
           <Tab.Navigator
@@ -69,7 +91,7 @@ export default function ProviderApp() {
                   iconName = focused ? "layers" : "layers-outline";
                   size = focused ? RFPercentage(4.75) : RFPercentage(3.5);
                   color = focused ? "#FF7F00" : "white";
-                } else if (route.name === "MyBag") {
+                } else if (route.name === "PaidStack") {
                   iconName = focused ? "basket-sharp" : "basket-outline";
                   size = focused ? RFPercentage(4.75) : RFPercentage(3.5);
                   color = focused ? "#FF7F00" : "white";
@@ -89,11 +111,21 @@ export default function ProviderApp() {
             <Tab.Screen name="MainStack" component={MainStack} />
             <Tab.Screen name="Categories" component={Categories} />
             <Tab.Screen name="Collections" component={Collections} />
-            <Tab.Screen name="MyBag" component={MyBag} />
+            <Tab.Screen name="PaidStack" component={PaidStack} options={amount_products_inBag ? {tabBarBadge:amount_products_inBag}:null}/>
             <Tab.Screen name="Favorites" component={Favorites} />
           </Tab.Navigator>
         </NavigationContainer>
       </GestureHandlerRootView>
-    </Provider>
   );
+}
+
+
+export default function ProviderApp() {
+
+  return(
+    <Provider store={store}>
+      <App />
+    </Provider>
+
+  )
 }

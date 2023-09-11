@@ -31,7 +31,8 @@ export default (state = INITIAL_STATE, action) => {
                 return item;
             });
             return { ...state, bag: updatedItems };
-
+        case "CLEAN_BAG":
+            return {...state, bag:[], ProductsInBagIds:[]}
         default:
             return state;
     }

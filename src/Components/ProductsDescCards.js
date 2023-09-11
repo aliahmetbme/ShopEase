@@ -33,7 +33,7 @@ export default ProductsDescCards
 const styles = StyleSheet.create({
     container: {
         margin: 10,
-        backgroundColor: "white",
+        backgroundColor: "#f8fafc",
         padding: 12,
         flex: 1,
         borderRadius: 10,

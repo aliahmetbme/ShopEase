@@ -6,7 +6,7 @@ import ProductsDescCards from "../Components/ProductsDescCards";
 import CategoryDisplayingCard from "../Components/CategoryDisplayingCard";
 import SearchBar from "../Components/SearchBar";
 
-export default function MainPage({navigation}) {
+export default function MainPage({ navigation }) {
 
   const dispatch = useDispatch();
   const todos = useSelector((state) => state.todos);
@@ -25,7 +25,7 @@ export default function MainPage({navigation}) {
   const renderData = ({ item }) => {
     return (
       <ProductsDescCards
-        onPress={() => navigation.navigate("Details", {id : item.id })}
+        onPress={() => navigation.navigate("Details", { id: item.id })}
         brand={item.brand}
         description={item.description}
         thumbnail={item.thumbnail}
@@ -38,16 +38,18 @@ export default function MainPage({navigation}) {
 
 
   return (
-    <SafeAreaView style={{ flex: 1, backgroundColor: "#DADADA" }}>
-      <View>
-      <SearchBar />
-      <FlatList 
-        showsHorizontalScrollIndicator={false}
-        horizontal={true}
-        data={categories.fav_categories}
-        renderItem={renderCategories}/>
-      </View>
+    <SafeAreaView style={{ flex: 1, backgroundColor: "#d1d5db" }}>
       <FlatList
+        ListHeaderComponent={
+          <View>
+            <SearchBar />
+            <FlatList
+              showsHorizontalScrollIndicator={false}
+              horizontal={true}
+              data={categories.fav_categories}
+              renderItem={renderCategories} />
+          </View>
+        }
         numColumns={2}
         data={todos.data.products}
         keyExtractor={(item) => item.id.toString()}

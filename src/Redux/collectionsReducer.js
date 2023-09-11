@@ -1,6 +1,6 @@
 const INITIAL_STATE={
     collections:{
-        myCollection:[]
+        MyCollection:[]
     }
 }
 

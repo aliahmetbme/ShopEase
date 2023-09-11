@@ -1,11 +1,11 @@
-import { StyleSheet, Text, View } from 'react-native'
+import { StyleSheet, Text, TouchableOpacity, View } from 'react-native'
 import React from 'react'
 
-const BagButton = () => {
+const BagButton = ({onPress}) => {
   return (
-    <View style={styles.contianer}>
-      <Text style={styles.title}>BagButton</Text>
-    </View>
+    <TouchableOpacity onPress={onPress} style={styles.contianer}>
+      <Text style={styles.title}>Confirm Bag</Text>
+    </TouchableOpacity>
   )
 }
 
@@ -18,10 +18,12 @@ const styles = StyleSheet.create({
         padding:10,
         paddingHorizontal:20,
         borderRadius:20,
-        margin:20
+        margin:20,
+        marginTop:10
     },
     title:{
         fontSize:20,
-        fontWeight:"900"
+        fontWeight:"900",
+        color:"white"
     }
 })
