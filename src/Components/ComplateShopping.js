@@ -2,10 +2,10 @@ import { StyleSheet, Text, Touchable, TouchableOpacity, View } from 'react-nativ
 import React from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 
-const AddBagButton = ({navigation}) => {
+const AddBagButton = ({onPress}) => {
 
   return (
-    <TouchableOpacity onPress={() => navigation.navigate("ComplatedPage")} style={styles.container}>
+    <TouchableOpacity onPress={onPress} style={styles.container}>
       <Text style={{color:"white", fontWeight:"bold",fontSize:20}}>Complate</Text> 
     </TouchableOpacity>
   )
