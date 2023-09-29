@@ -11,7 +11,7 @@ export default (state = INITIAL_STATE, action) => {
                     fav_categories: [...state.fav_categories, action.payload]
                 };
             }
-            return state; // Eğer action.payload zaten dizide varsa, state'i değiştirme
+            return state; 
         default:
             return state;
     }

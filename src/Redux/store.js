@@ -5,6 +5,7 @@ import categoryReducer from "./categoryReducer";
 import favoritesReducer from "./favoritesReducer";
 import collectionsReducer from "./collectionsReducer";
 import bagReducer from "./bagReducer";
+import loginReducer from "./loginReducer";
 
 export default configureStore({
     reducer :{
@@ -13,6 +14,7 @@ export default configureStore({
         categories: categoriesSlice,
         favorites:  favoritesReducer,
         collections : collectionsReducer,
-        bag: bagReducer
+        bag: bagReducer,
+        login: loginReducer
     }        
 })

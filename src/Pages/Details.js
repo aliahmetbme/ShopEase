@@ -12,6 +12,8 @@ import { FlatList } from 'react-native-gesture-handler';
 const Details = ({ route }) => {
   const detailedData = useSelector(state => state.todos).detailedData
   const collectionsData = useSelector(state => state.collections).collections
+  const favoritesData = useSelector(state => state.favorites).favoritesProductsIds
+
 
   const dispatch = useDispatch()
   const [isModalVisible, setModalVisible] = useState(false);
@@ -66,8 +68,8 @@ const Details = ({ route }) => {
               onChange={() => {}}>
             </StarRating>
           </View>
-          <TouchableOpacity onPress={() => { dispatch({ type: "ADD_FAVORITES", payload: detailedData }) }}>
-            <Icon name="heart-outline" size={25} color="black"></Icon>
+          <TouchableOpacity onPress={() => {{ favoritesData.includes(detailedData.id) ? dispatch({ type: "REMOVE_FAVORITES", payload: detailedData }) : dispatch({ type: "ADD_FAVORITES", payload: detailedData }) } }}>
+           {favoritesData.includes(detailedData.id) ?  <Icon name="heart" size={25} color="red"></Icon> : <Icon name="heart-outline" size={25} color="red"></Icon>}
           </TouchableOpacity>
         </View>
         <View style={styles.description}>

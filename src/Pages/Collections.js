@@ -43,7 +43,7 @@ const Collecitons = () => {
             placeholder={"Collection Name"}
             value={collectionName}
             onChangeText={setCollecitonName}/>
-            <TouchableOpacity onPress={addCollection} style={{alignSelf:"center", margin:30, padding:10,paddingHorizontal:20, borderRadius:20, backgroundColor:"#FF7F00"}}>
+            <TouchableOpacity onPress={addCollection} style={{alignSelf:"center", margin:10, padding:10,paddingHorizontal:20, borderRadius:20, backgroundColor:"#FF7F00"}}>
               <Text>Create Colleciton</Text>
             </TouchableOpacity>
         </SafeAreaView>
@@ -58,6 +58,6 @@ export default Collecitons
 const styles = StyleSheet.create({
   container:{
     flex:1,
-    backgroundColor:"#DADADA"
+    backgroundColor:"#d1d5db"
   }
 })

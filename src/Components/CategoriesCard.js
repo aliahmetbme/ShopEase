@@ -1,4 +1,4 @@
-import { StyleSheet, Text, Touchable, View, StatusBar } from 'react-native'
+import { StyleSheet, Text, Touchable, View, StatusBar, Dimensions } from 'react-native'
 import React from 'react'
 import { TouchableOpacity } from 'react-native-gesture-handler'
 import { useDispatch, useSelector } from 'react-redux'
@@ -28,10 +28,12 @@ const styles = StyleSheet.create({
     paddingHorizontal: 10,
     paddingVertical: 10,
     borderRadius: 20,
-    alignSelf: "center"
+    alignSelf: "center",
+    width:Dimensions.get("screen").width / 2 * 0.8,
+    
   },
   categoryName: {
-    fontSize: 25,
+    fontSize: 20,
     fontWeight: "900",
   }
 })

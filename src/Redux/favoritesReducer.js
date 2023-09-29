@@ -20,6 +20,7 @@ export default (state = INITIAL_STATE, action) => {
                 if (state.favorites.includes(action.payload)) {
                     return {
                         ...state,
+                        favoritesProductsIds : state.favoritesProductsIds.filter(item => item !== action.payload.id),
                         favorites: state.favorites.filter(item => item !== action.payload)
                     };
                 }

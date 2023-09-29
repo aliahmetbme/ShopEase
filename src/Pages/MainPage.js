@@ -5,6 +5,7 @@ import { fetchTodos } from "../Redux/productSlice";
 import ProductsDescCards from "../Components/ProductsDescCards";
 import CategoryDisplayingCard from "../Components/CategoryDisplayingCard";
 import SearchBar from "../Components/SearchBar";
+import ProfileComponent from "../Components/ProfileComponent";
 
 export default function MainPage({ navigation }) {
 
@@ -42,6 +43,7 @@ export default function MainPage({ navigation }) {
       <FlatList
         ListHeaderComponent={
           <View>
+            <ProfileComponent onPress={() => navigation.navigate("Profile")}></ProfileComponent>
             <SearchBar />
             <FlatList
               showsHorizontalScrollIndicator={false}
