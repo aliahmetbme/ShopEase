@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "943488609818",
+    "project_id": "shopease-c5575",
+    "storage_bucket": "shopease-c5575.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:943488609818:android:1e6ee940b871dce6bfaba3",
+        "android_client_info": {
+          "package_name": "com.fetch_redux"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCuJ4Jn-ekc29fz2AHBHuQTC0-lcec67as"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
