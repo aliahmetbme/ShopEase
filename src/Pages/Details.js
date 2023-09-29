@@ -1,4 +1,4 @@
-import { SafeAreaView, StyleSheet, Text, View, StatusBar, Button, ImageBackground, Touchable, TouchableOpacity, ScrollView } from 'react-native'
+import { SafeAreaView, StyleSheet, Text, View, StatusBar, Button, ImageBackground, Touchable, TouchableOpacity, ScrollView, Platform } from 'react-native'
 import React, { useEffect, useState } from 'react'
 import { useSelector, useDispatch } from 'react-redux';
 import { fetchDetails } from '../Redux/productSlice';
@@ -8,6 +8,7 @@ import Icon from "react-native-vector-icons/Ionicons";
 import Modal from 'react-native-modal';
 import AddBagButton from '../Components/AddBagButton';
 import { FlatList } from 'react-native-gesture-handler';
+import { RFPercentage } from 'react-native-responsive-fontsize';
 
 const Details = ({ route }) => {
   const detailedData = useSelector(state => state.todos).detailedData
@@ -125,7 +126,7 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     borderColor: "#DADADA",
     justifyContent: "space-between",
-    padding: 30
+    padding: Platform.OS === "android" ?  RFPercentage(0.1) : RFPercentage(0.9)
   },
   prices: {
     margin: 10,

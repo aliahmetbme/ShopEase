@@ -7,7 +7,6 @@ const Favorites = ({navigation}) => {
   const favorites = useSelector(state => state.favorites)
   let x = {id:10,ds:"lskld"} 
   let y = {id:10,ds:"lskld"}
-  console.log(favorites.favorites)
 
   const renderData = ({ item }) => {
     return (

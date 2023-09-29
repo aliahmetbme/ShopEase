@@ -15,7 +15,7 @@ export default function MainPage({ navigation }) {
 
   React.useEffect(() => {
     dispatch(fetchTodos("https://dummyjson.com/products?limit=0"))
-  }, [])
+  }, [dispatch])
 
   const renderCategories = ({ item }) => {
     return (

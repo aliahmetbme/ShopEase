@@ -43,8 +43,7 @@ const Registration = ({navigation}) => {
 
   return (
     <SafeAreaView style={{flex:1}}>
-            <LottieView source={require("../Assests/animation_ln3qynjc.json")} useNativeLooping autoPlay loop style={{flex:0.85,}}></LottieView>
-
+      <LottieView source={require("../Assests/animation_ln3qynjc.json")} useNativeLooping autoPlay loop style={{flex:0.85,}}></LottieView>
       <Formik
         initialValues={initialValues}
         onSubmit={(values) => register(values)}

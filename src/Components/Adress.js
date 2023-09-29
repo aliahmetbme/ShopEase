@@ -1,4 +1,4 @@
-import { ScrollView, StyleSheet, Text, TextInput, Touchable, TouchableOpacity, View, KeyboardAvoidingView, Alert } from 'react-native'
+import { ScrollView, StyleSheet, Text, TextInput, Touchable, TouchableOpacity, View, KeyboardAvoidingView, Alert, SafeAreaView } from 'react-native'
 import React, { useState } from 'react'
 import ComplateShopping from "./ComplateShopping"
 import { Formik } from "formik"
@@ -26,17 +26,17 @@ const Address = ({ navigation }) => {
             return
         }
 
-        console.log()
+        
         navigation.navigate("ComplatedPage")
     }
 
     return (
         <KeyboardAvoidingView
-            style={{ flex: 1, paddingBottom: 10 }}
-            behavior="padding"
-            enabled
-        >
-            <ScrollView style={{ flex: 1 }}>
+            style={{flex:1}}
+            behavior="height">
+        <ScrollView
+          keyboardDismissMode="on-drag">
+            
                 <Formik
                     initialValues={initialValues}
                     onSubmit={(values) => getPaid(values)}>
@@ -135,8 +135,9 @@ const Address = ({ navigation }) => {
                         </>
                     )}
                 </Formik>
-            </ScrollView>
-        </KeyboardAvoidingView>
+         </ScrollView>
+         </KeyboardAvoidingView>
+
     )
 }
 

@@ -15,7 +15,6 @@ const ProductsInBag = (props) => {
         let newPrice = (price / amount) * newAmount
 
         dispatch({ type: "UPDATE_AMOUNT", payload: { id, newAmount, newPrice } });
-        console.log("decrease");
     }
 
     function increase() {
@@ -23,7 +22,6 @@ const ProductsInBag = (props) => {
         let newPrice = (price / amount) * newAmount
 
         dispatch({ type: "UPDATE_AMOUNT", payload: { id, newAmount, newPrice } });
-        console.log("increase", newAmount);
     }
 
 

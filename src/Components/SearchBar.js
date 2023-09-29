@@ -3,6 +3,7 @@ import React, {useState} from 'react'
 import Icon from "react-native-vector-icons/Ionicons"
 import { useDispatch } from 'react-redux'
 import { fetchTodos } from '../Redux/productSlice'
+import { RFPercentage } from 'react-native-responsive-fontsize'
 
 const searchBar = () => {
 
@@ -36,14 +37,17 @@ export default searchBar
 
 const styles = StyleSheet.create({
     container:{
+        overflow:"hidden",
         margin:10,
-        borderRadius:20,
+        borderRadius: RFPercentage(6),
         paddingHorizontal:20,
         padding:10,
         backgroundColor:"white",
         flexDirection:"row",
+        alignItems:"center"
     },
     icon:{
-      marginRight:10
+      marginRight:10,
+      alignSelf:"center",
     }
 })

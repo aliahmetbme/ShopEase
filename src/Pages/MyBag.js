@@ -7,9 +7,7 @@ import ProductsInBag from '../Components/ProductsInBag';
 const MyBag = ({ navigation }) => {
   try {
     const data = useSelector((state) => state.bag);
-    console.log(data.bag[0])
     const total = data.bag.reduce((accumulator, currentItem) => accumulator + currentItem.price, 0);
-    console.log(total)
 
     const renderData = ({ item }) => {
       return (

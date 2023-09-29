@@ -9,7 +9,6 @@ import CategoriesCard from '../Components/CategoriesCard';
 const Categories = () => {
     const dispatch = useDispatch();
     const variables = useSelector((state) => state.categories)
-    console.log(variables)
 
     function renderItem({ item }) {
         return (
@@ -19,7 +18,7 @@ const Categories = () => {
 
     useEffect(() => {
         dispatch(fetchCategories('https://dummyjson.com/products/categories'))
-    }, [])
+    }, [dispatch])
 
     return (
         <SafeAreaView style={{ flex: 1 }} >
@@ -30,7 +29,8 @@ const Categories = () => {
                 columnWrapperStyle={{ flexWrap: "wrap", justifyContent: "space-evenly" }}
                 numColumns={2}
                 data={variables.categories}
-                renderItem={renderItem} />
+                renderItem={renderItem}
+                keyExtractor={(item) => item}/>
         </SafeAreaView>
     )
 }
@@ -41,7 +41,8 @@ const styles = StyleSheet.create({
     CategoriesTitle:{
         fontSize:35,
         color:"#FF7F00",
-        fontWeight:"900"
+        fontWeight:"900",
+        color:"black"
       },
       CategoriesTitleContainer:{
         padding:10,
