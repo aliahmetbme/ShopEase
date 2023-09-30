@@ -5,38 +5,17 @@ import { useDispatch } from 'react-redux'
 import auth from "@react-native-firebase/auth"
 import { RFPercentage } from 'react-native-responsive-fontsize'
 import ProfileSectionsPart from '../Components/ProfileSectionsPart'
-import GradientExample from '../Assests/Gradient'
-const Profile = ({ navigation }) => {
-    function generateGradientColor(color1, color2, steps) {
-        const hexToRgb = (hex) => {
-          const bigint = parseInt(hex.slice(1), 16);
-          const r = (bigint >> 16) & 255;
-          const g = (bigint >> 8) & 255;
-          const b = bigint & 255;
-          return [r, g, b];
-        };
-      
-        const rgb1 = hexToRgb(color1);
-        const rgb2 = hexToRgb(color2);
-      
-        const stepFactor = 1 / (steps - 1);
-        const gradientColors = [];
-      
-        for (let i = 0; i < steps; i++) {
-          const r = Math.round(rgb1[0] + (rgb2[0] - rgb1[0]) * i * stepFactor);
-          const g = Math.round(rgb1[1] + (rgb2[1] - rgb1[1]) * i * stepFactor);
-          const b = Math.round(rgb1[2] + (rgb2[2] - rgb1[2]) * i * stepFactor);
-      
-          gradientColors.push(`rgb(${r}, ${g}, ${b})`);
-        }
-      
-        return gradientColors;
-      }
-      
-      // Koyu mavi (#1A237E) ve turuncu (#FF5722) renkler arasında 5 adet renk üret
-      const gradientColors = generateGradientColor("#1A237E", "#FF5722", 5);
+import LinearGradient from 'react-native-linear-gradient';
 
-    const [source] = React.useState( "https://images.pexels.com/photos/5506141/pexels-photo-5506141.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1")
+const Profile = ({ navigation }) => {
+    const colorList = [
+        { color: '#FF7F00', opacity: '1' },
+        { color: '#FFA500', opacity: '1' },
+        { color: '#FFD700', opacity: '1' },
+        { color: '#ffbf8b', opacity: '1' }
+    ]
+
+    const [source] = React.useState("https://images.pexels.com/photos/5506141/pexels-photo-5506141.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1")
 
     const sections = ["Orders", "Saved Cards", "Saved Adress", "Change Password", "Phone Number", "Language"]
 
@@ -52,9 +31,14 @@ const Profile = ({ navigation }) => {
     }
 
     return (
-        <View style={{ backgroundColor: "#e67e22", flex: 1 }}>
-            <View>
-                <SafeAreaView style={styles.infoPart}>
+        <View style={{ flex: 1 }}>
+            <LinearGradient
+                colors={colorList.map(item => item.color)}
+                locations={[0.15,0.60,0.40,1]}
+                angle={270}
+                style={{ flex: 1 }}
+            >
+            <SafeAreaView style={styles.container}>
                     <Icon name="home-sharp" size={50} color="black" onPress={() => navigation.navigate("MainPage")}></Icon>
                     <View style={styles.profileDesPart}>
                         <Image source={{ uri: source }} style={styles.Image}></Image>
@@ -63,14 +47,14 @@ const Profile = ({ navigation }) => {
                     </View>
                     <Icon name="log-out" size={50} color="black" onPress={handlelogout}></Icon>
                 </SafeAreaView>
-            </View>
-            <SafeAreaView style={{flex:1, backgroundColor:"#fdf2e9"}}>
-                <FlatList
-                    data={sections}
-                    renderItem={({ item }) => <ProfileSectionsPart item={item} />}
-                    keyExtractor={(item, index) => index.toString()} // Burada indeksi kullanabilirsiniz
-                />
-            </SafeAreaView>
+                <SafeAreaView style={styles.contentContainer}>
+                    <FlatList
+                        data={sections}
+                        renderItem={({ item }) => <ProfileSectionsPart item={item} />}
+                        keyExtractor={(item, index) => index.toString()}
+                    />
+                </SafeAreaView>
+            </LinearGradient>
         </View>
     )
 }
@@ -78,19 +62,18 @@ const Profile = ({ navigation }) => {
 export default Profile
 
 const styles = StyleSheet.create({
-    infoPart: {
+    container: {
         flexDirection: "row",
         justifyContent: "space-between",
         minHeight: Dimensions.get("screen").height / 3,
         margin: RFPercentage(2),
-       
     },
     profileDesPart: {
         marginTop: RFPercentage(8)
     },
     name: {
         marginTop: 10,
-        color: "black",
+        color: "white", // Metin rengini beyaz olarak ayarladık
         fontSize: RFPercentage(2.5),
         fontWeight: "900",
         alignSelf: "center"
@@ -100,5 +83,9 @@ const styles = StyleSheet.create({
         width: RFPercentage(15),
         height: RFPercentage(15),
         borderRadius: RFPercentage(15) / 2
+    },
+    contentContainer: {
+        flex: 1,
+        backgroundColor: "#fdf2e9", // İçerik arka plan rengini ayarladık
     }
 })
