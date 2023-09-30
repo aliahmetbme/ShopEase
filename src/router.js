@@ -94,14 +94,14 @@ function App() {
   const bag = useSelector(state => state.bag).bag
   const amount_products_inBag = bag.length
   const log_in = useSelector(state => state.login).isIn
-  console.log(log_in,"log")
+  
   const TabBarIcon = ({ color, size, iconName }) => {
     return <Icon name={iconName} size={size} color={color} />;
   };
 
   return (
     <GestureHandlerRootView style={{ flex: 1 }}>
-      {!log_in
+      {log_in
         ?
         <NavigationContainer>
           <LoginStack></LoginStack>
