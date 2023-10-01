@@ -4,5 +4,5 @@
   {"section": "Saved Adress", "icon": "home-outline", "onPress": "ShowAdress"},
   {"section": "Change Password", "icon": "chatbox-ellipses-outline", "onPress": "updatePassword"},
   {"section": "Phone Number", "icon": "keypad-outline", "onPress": "updatePhoneNumber"},
-  {"section": "language", "icon": "language-outline", "onPress": "updateLanguage"}
+  {"section": "Language", "icon": "language-outline", "onPress": "updateLanguage"}
 ]

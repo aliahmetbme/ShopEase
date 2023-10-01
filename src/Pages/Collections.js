@@ -7,7 +7,7 @@ import AddCollectionButton from '../Components/AddCollectionButton';
 import CollecitonCard from '../Components/CollecitonCard';
 import { RFPercentage } from 'react-native-responsive-fontsize';
 
-const Collecitons = () => {
+const Collecitons = ({navigation}) => {
   const dispatch = useDispatch()
   const data = useSelector(state => state.collections)
 
@@ -18,9 +18,16 @@ const Collecitons = () => {
     setModalVisible(!isModalVisible)
   }
 
+  function showFocusecCollections (collectionName) {
+    
+    dispatch({type:"SET_FOCUSED_COLLECTION", payload:collectionName})
+    navigation.navigate("ProductsCollectionPage", {data: data.collections[collectionName]})
+  }
+
   function renderData({item}) {
+    
     return(
-      <CollecitonCard name={item} size={data.collections[item].length} data={data.collections[item]}></CollecitonCard>
+      <CollecitonCard onPress={() => showFocusecCollections(item)} name={item} size={data.collections[item].length} data={data.collections[item]}></CollecitonCard>
     )
   }
 

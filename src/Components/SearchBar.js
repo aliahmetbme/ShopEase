@@ -41,7 +41,7 @@ const styles = StyleSheet.create({
         margin:10,
         borderRadius: RFPercentage(6),
         paddingHorizontal:20,
-        padding:10,
+        padding:RFPercentage(1),
         backgroundColor:"white",
         flexDirection:"row",
         alignItems:"center"

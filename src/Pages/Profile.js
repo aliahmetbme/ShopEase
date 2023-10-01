@@ -20,10 +20,6 @@ const Profile = ({ navigation }) => {
     const name = auth().currentUser.displayName
     const email = auth().currentUser.email
 
-    const x = {
-        a: () => { console.log("sdkjfklsdjfs") }
-    }
-
     // auth().currentUser.updateProfile({ displayName: "ALİ AHMET" })
     // auth().currentUser.updateProfile({ photoURL: "https://fotolifeakademi.com/uploads/2020/04/dusuk-isikta-fotograf-cekme-724x394.webp" })
     const [source] = React.useState(auth().currentUser.photoURL || "https://images.pexels.com/photos/5506141/pexels-photo-5506141.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1")
@@ -50,7 +46,7 @@ const Profile = ({ navigation }) => {
     }
 
     return (
-        <View style={{ flex: 1, backgroundColor: "#FF7F00" }}>
+        <View style={{ flex: 1, backgroundColor: "#d1d5db" }}>
             {/* <LinearGradient
                 colors={colorList.map(item => item.color)}
                 locations={[0.1,0.40,0.30,1]}
@@ -98,7 +94,7 @@ const styles = StyleSheet.create({
     },
     name: {
         marginTop: 10,
-        color: "white", // Metin rengini beyaz olarak ayarladık
+        color: "black", // Metin rengini beyaz olarak ayarladık
         fontSize: RFPercentage(2.5),
         fontWeight: "900",
         alignSelf: "center"

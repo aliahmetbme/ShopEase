@@ -7,7 +7,7 @@ const CategoryDisplayingCard = ({ item }) => {
     return (
         <View style={styles.container}>
             <TouchableOpacity onPress={() => dispatch(fetchTodos(`https://dummyjson.com/products/category/${item}`))}>
-                <Text style={styles.categoryname}>{item}</Text>
+                <Text style={styles.categoryname}>{item.replace(/^\w/, c => c.toUpperCase())}</Text>
             </TouchableOpacity>
         </View>
     )
@@ -26,7 +26,7 @@ const styles = StyleSheet.create({
     },
     categoryname: {
         fontWeight: "bold",
-        fontSize: 20,
+        fontSize: 18,
         
     }
 })

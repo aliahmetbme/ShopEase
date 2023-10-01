@@ -12,8 +12,7 @@ const IconComponent = () => {
     <TouchableOpacity onPress={() => onGoogleButtonPress()}>
         <View style={styles.container}>
             <Image source={require("../Assests/google.png")} style={styles.icon} />
-            <Text  style={styles.text}>Google Hesabı ile Giriş</Text>
-        </View>
+        </View>   
     </TouchableOpacity>
 
   ); 
@@ -37,19 +36,19 @@ async function onGoogleButtonPress() {
 
 const styles = StyleSheet.create({
     container:{
-        flexDirection:"row",
         backgroundColor:"white",
         margin: 10,
         borderRadius:20,
         alignItems:"center",
         borderColor:"black",
         borderWidth:2,
+        alignSelf:"center"
     },
     icon: {
-      width: 30,
-      height: 30,
-      margin:5,
-      marginLeft:15
+      width: 40,
+      height: 40,
+      margin:10,
+      alignSelf:"center"
     },
     text:{
         color:"black",

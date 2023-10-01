@@ -21,6 +21,7 @@ import PaidPage from './Pages/PaidPage';
 import ComplatedPage from './Pages/ComplatedPage';
 import LoginPage from './Pages/LoginPage';
 import RegistrationPage from './Pages/RegistrationPage';
+import ProductsCollectionPage from "./Pages/ProductsCollectionPage"
 import Profile from './Pages/Profile';
 
 const Stack = createStackNavigator();
@@ -90,6 +91,24 @@ function FavoritesStack({ navigation, route }) {
 }
 
 
+function CollecitonsStack({ navigation, route }) {
+  const data = useSelector(state => state.todos)
+  const productsCollectionPageTitle = useSelector(state => state.collections).focusedCollectionName
+
+  useBottomNavigatorVisible(
+    { Pages: Pages, Style: tabBarStyle },
+    { route, navigation },
+  )
+  return (
+    <Stack.Navigator screenOptions={{ headerShown: false }}>
+      <Stack.Screen name="Collections" component={Collections} ></Stack.Screen>
+      <Stack.Screen name="ProductsCollectionPage" component={ProductsCollectionPage} options={{headerShown:true, headerTitle : productsCollectionPageTitle, headerBackTitle: "Back" , }}></Stack.Screen>
+      <Stack.Screen name="Details" component={Details} options={{ gestureEnabled: false, headerShown: true, headerTitle: data.detailedData.title, headerBackTitle: " " }}></Stack.Screen>
+    </Stack.Navigator>
+  )
+}
+
+
 function App() {
 
   const [userSession, setUserSession] = React.useState(false)
@@ -129,7 +148,7 @@ function App() {
                   iconName = focused ? "apps" : "apps-outline";
                   size = focused ? RFPercentage(4.75) : RFPercentage(3.5);
                   color = focused ? "#FF7F00" : "white";
-                } else if (route.name === "Collections") {
+                } else if (route.name === "CollecitonsStack") {
                   iconName = focused ? "layers" : "layers-outline";
                   size = focused ? RFPercentage(4.75) : RFPercentage(3.5);
                   color = focused ? "#FF7F00" : "white";
@@ -152,7 +171,7 @@ function App() {
           >
             <Tab.Screen name="MainStack" component={MainStack} />
             <Tab.Screen name="Categories" component={Categories} />
-            <Tab.Screen name="Collections" component={Collections} />
+            <Tab.Screen name="CollecitonsStack" component={CollecitonsStack} />
             <Tab.Screen name="PaidStack" component={PaidStack} options={amount_products_inBag ? { tabBarBadge: amount_products_inBag } : null} />
             <Tab.Screen name="FavoritesStack" component={FavoritesStack} />
           </Tab.Navigator>

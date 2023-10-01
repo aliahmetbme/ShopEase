@@ -27,18 +27,12 @@ export default CategoriesCard
 
 const styles = StyleSheet.create({
   container: {
-    //marginTop: StatusBar.currentHeight || 0,
     flex: 1,
     margin: 10,
     backgroundColor: "#DADADA",
     paddingHorizontal: 10,
     paddingVertical: 10,
-    borderRadius: 30,
-    borderWidth:3,
-    borderColor:"#FF7F00"
-    //alignSelf: "center",
-    //width:Dimensions.get("screen").width / 2 * 0.89,
-    
+    borderRadius: 30,   
   },
   categoryName: {
     fontSize: RFPercentage(2.5),

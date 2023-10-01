@@ -7,9 +7,9 @@ const ProfileSectionsPart = ({item, onPress, icon}) => {
 
   return (
     <TouchableOpacity onPress={onPress} style={styles.container}>
-      <Icon name={icon} size={40}></Icon>
+      <Icon name={icon} size={40} color="#FF7F00"></Icon>
       <Text style={styles.sectionName}>{item}</Text>
-      <Icon name="chevron-forward-outline" size={30}></Icon>
+      <Icon name="chevron-forward-outline" size={30} color="#FF7F00"></Icon>
     </TouchableOpacity>
   )
 }
@@ -27,7 +27,7 @@ const styles = StyleSheet.create({
        borderRadius:RFPercentage(40),
        marginVertical:10,
        paddingHorizontal:20,
-       backgroundColor:"#FFFFF0"
+       backgroundColor:"white"
       
     },
     sectionName: {
