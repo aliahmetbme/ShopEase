@@ -37,15 +37,15 @@ const Collecitons = () => {
         data={Object.keys(data.collections)}
         renderItem={renderData}></FlatList>
       <Modal swipeDirection="down" onBackdropPress={toggleModal} propagateSwipe={true}	hideModalContentWhileAnimating={true} useNativeDriver={true} backdropOpacity={0.5} isVisible={isModalVisible}>
-        <SafeAreaView style={{ flex: RFPercentage(0.01), backgroundColor:"#ffffff",borderWidth:5,borderColor:"#FF7F00",padding:10}}>
+        <SafeAreaView style={{ flex: RFPercentage(0.01), backgroundColor:"#ffffff",borderWidth:5,borderColor:"#FF7F00",padding:10,borderRadius:20}}>
            <Text style={{ margin:10, fontWeight:"bold", fontSize:18}}>Colleciton Name</Text>
            <TextInput
-            style={{ backgroundColor:"#DADADA", margin:RFPercentage(1), padding:RFPercentage(1), paddingHorizontal:RFPercentage(2), borderRadius:10}}
+            style={{ backgroundColor:"#DADADA", margin:RFPercentage(1), padding:RFPercentage(1), paddingHorizontal:RFPercentage(2)}}
             placeholder={"Collection Name"}
             value={collectionName}
             onChangeText={setCollecitonName}/>
             <TouchableOpacity onPress={addCollection} style={{ alignSelf:"center", margin:10, padding:10,paddingHorizontal:20, borderRadius:20, backgroundColor:"#FF7F00"}}>
-              <Text>Create Colleciton</Text>
+              <Text style={{color:"white",fontWeight:"700"}}>Create Colleciton</Text>
             </TouchableOpacity>
         </SafeAreaView>
       </Modal>

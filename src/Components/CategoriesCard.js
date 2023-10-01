@@ -18,7 +18,7 @@ const CategoriesCard = ({ name }) => {
   }
   return (
     <TouchableOpacity onPress={handlePress} style={[styles.container,  fav_Categories.includes(name) ? {backgroundColor:  "#FF7F00" } : null]}>
-      <Text style={[styles.categoryName,  fav_Categories.includes(name) ? {color:  "white" } : null]}>{name}</Text>
+      <Text style={[styles.categoryName,  fav_Categories.includes(name) ? {color:  "white" } : null]}>{name.replace(/^\w/, c => c.toUpperCase())}</Text>
     </TouchableOpacity>
   )
 }
@@ -33,9 +33,11 @@ const styles = StyleSheet.create({
     backgroundColor: "#DADADA",
     paddingHorizontal: 10,
     paddingVertical: 10,
-    borderRadius: 20,
-    alignSelf: "center",
-    width:Dimensions.get("screen").width / 2 * 0.89,
+    borderRadius: 30,
+    borderWidth:3,
+    borderColor:"#FF7F00"
+    //alignSelf: "center",
+    //width:Dimensions.get("screen").width / 2 * 0.89,
     
   },
   categoryName: {

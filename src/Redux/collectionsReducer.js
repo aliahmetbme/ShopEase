@@ -7,6 +7,7 @@ const INITIAL_STATE={
 export default (state = INITIAL_STATE, action) => {
     switch (action.type) {
         case "ADD_COLLECTIONS":
+            if (action.payload === ""){return{...state}}
             const newCollections = {
                 ...state.collections,
                 [action.payload] : []

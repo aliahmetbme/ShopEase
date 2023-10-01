@@ -8,21 +8,22 @@ const ComplatedPage = ({ navigation }) => {
         dispatch({ type: "CLEAN_BAG" })
     }, [])
     return (
-        <View style={{ flex: 1 }}>
-            <View style={{ flex: 1, justifyContent: "center" }}>
-                <LottieView
-                    style={{ flex: 0.8 }}
-                    source={require("../Assests/3JURTwzfmV.json")}
-                    autoPlay={true}
-                />
-                <Text style={{ alignSelf: "center", verticalAlign: "top", color: "#FF7F00", fontWeight: "800", fontSize: 25 }}>You Complated Your Shopping</Text>
-                <TouchableOpacity onPress={() => {
-                    navigation.navigate("MyBag")
-                    navigation.navigate("MainPage")
-                }} style={{ alignSelf: "center", flex: 0.2, justifyContent: "center" }}>
-                    <Text style={{ backgroundColor: "#FF7F00", padding: 10, paddingHorizontal: 20, borderRadius: 20 }}>Back to MainPage</Text>
-                </TouchableOpacity>
-            </View>
+
+        <View style={{ flex: 1, justifyContent: "center" }}>
+            <LottieView
+                style={{ flex: 0.8 }}
+                source={require("../Assests/3JURTwzfmV.json")}
+                autoPlay={true}
+            />
+            <Text style={{ alignSelf: "center", verticalAlign: "top", color: "#FF7F00", fontWeight: "800", fontSize: 25 }}>You Complated Your Shopping</Text>
+            <TouchableOpacity onPress={() => {
+                navigation.navigate("MyBag");
+                navigation.navigate("MainPage");
+            }} style={{ alignSelf: "center", flex: 0.2, justifyContent: "center" }}>
+                <View style={{ borderRadius: 20, backgroundColor: "#FF7F00" }}>
+                    <Text style={{ padding: 10, paddingHorizontal: 20, color:"white",fontWeight:"800", fontSize:17 }}>Back to Main Page</Text>
+                </View>
+            </TouchableOpacity>
         </View>
     )
 }

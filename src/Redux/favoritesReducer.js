@@ -16,15 +16,15 @@ export default (state = INITIAL_STATE, action) => {
             }
             return state
 
-        case "REMOVE_FAVORITES":
-                if (state.favorites.includes(action.payload)) {
+            case "REMOVE_FAVORITES":
+                if (state.favoritesProductsIds.includes(action.payload.id)) {
                     return {
                         ...state,
-                        favoritesProductsIds : state.favoritesProductsIds.filter(item => item !== action.payload.id),
-                        favorites: state.favorites.filter(item => item !== action.payload)
+                        favoritesProductsIds: state.favoritesProductsIds.filter(item => item !== action.payload.id),
+                        favorites: state.favorites.filter(item => item.id !== action.payload.id)
                     };
                 }
-                return state;  // Eğer action.payload zaten dizide varsa, state'i değiştirme
+                return state; 
         default:
             return state;
     }

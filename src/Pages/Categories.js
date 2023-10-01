@@ -26,8 +26,8 @@ const Categories = () => {
                 <Text style={styles.CategoriesTitle}>Categories</Text>
             </View>
             <FlatList
-                columnWrapperStyle={{ flexWrap: "wrap", justifyContent: "space-evenly" }}
-                numColumns={2}
+               // columnWrapperStyle={{ flexWrap: "wrap", justifyContent: "space-evenly" }}
+                showsVerticalScrollIndicator={false}
                 data={variables.categories}
                 renderItem={renderItem}
                 keyExtractor={(item) => item}/>

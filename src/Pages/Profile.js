@@ -1,23 +1,40 @@
-import { StyleSheet, Text, View, Image, SafeAreaView, ScrollView, StatusBar, Dimensions, FlatList } from 'react-native'
+import { StyleSheet, Text, View, Image, SafeAreaView, ScrollView, StatusBar, Dimensions, FlatList, Alert } from 'react-native'
 import React from 'react'
 import Icon from "react-native-vector-icons/Ionicons"
 import { useDispatch } from 'react-redux'
 import auth from "@react-native-firebase/auth"
 import { RFPercentage } from 'react-native-responsive-fontsize'
 import ProfileSectionsPart from '../Components/ProfileSectionsPart'
-import LinearGradient from 'react-native-linear-gradient';
+import ProfileSection from '../ProjileSection.json'
+//import LinearGradient from 'react-native-linear-gradient';
 
 const Profile = ({ navigation }) => {
-    const colorList = [
-        { color: '#FF7F00', opacity: '1' },
-        { color: '#FFA500', opacity: '1' },
-        { color: '#FFD700', opacity: '1' },
-        { color: '#ffbf8b', opacity: '1' }
-    ]
+    // const colorList = [
+    //     { color: '#FF7F00', opacity: '1' },
+    //     { color: '#FFA500', opacity: '1' },
+    //     { color: '#FFD700', opacity: '1' },
+    //     { color: '#FFEDCC', opacity: '1' }
+    // ]
 
-    const [source] = React.useState("https://images.pexels.com/photos/5506141/pexels-photo-5506141.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1")
+    const name = auth().currentUser.displayName
+    const email = auth().currentUser.email
 
-    const sections = ["Orders", "Saved Cards", "Saved Adress", "Change Password", "Phone Number", "Language"]
+    const x = {
+        a: () => { console.log("sdkjfklsdjfs") }
+    }
+
+    // auth().currentUser.updateProfile({ displayName: "ALİ AHMET" })
+    // auth().currentUser.updateProfile({ photoURL: "https://fotolifeakademi.com/uploads/2020/04/dusuk-isikta-fotograf-cekme-724x394.webp" })
+    const [source] = React.useState(auth().currentUser.photoURL || "https://images.pexels.com/photos/5506141/pexels-photo-5506141.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1")
+
+     function changePassword () {
+        try {
+            auth().sendPasswordResetEmail(email)
+            Alert.alert("Uyarı", "Lütfen Mailinizi Kontrol Ediniz")
+        } catch (error){
+            console.log(error)
+        }
+    }
 
     const dispatch = useDispatch()
 
@@ -31,30 +48,34 @@ const Profile = ({ navigation }) => {
     }
 
     return (
-        <View style={{ flex: 1 }}>
-            <LinearGradient
+        <View style={{ flex: 1, backgroundColor: "#FF7F00" }}>
+            {/* <LinearGradient
                 colors={colorList.map(item => item.color)}
-                locations={[0.15,0.60,0.40,1]}
-                angle={270}
+                locations={[0.1,0.40,0.30,1]}
+                angle={270} 
                 style={{ flex: 1 }}
-            >
-            <SafeAreaView style={styles.container}>
-                    <Icon name="home-sharp" size={50} color="black" onPress={() => navigation.navigate("MainPage")}></Icon>
-                    <View style={styles.profileDesPart}>
-                        <Image source={{ uri: source }} style={styles.Image}></Image>
-                        <Text style={styles.name}>Name Surname</Text>
-                        <Text style={[styles.name, { fontWeight: "600", marginTop: 1, fontSize: RFPercentage(2) }]}>Email</Text>
-                    </View>
-                    <Icon name="log-out" size={50} color="black" onPress={handlelogout}></Icon>
-                </SafeAreaView>
-                <SafeAreaView style={styles.contentContainer}>
-                    <FlatList
-                        data={sections}
-                        renderItem={({ item }) => <ProfileSectionsPart item={item} />}
-                        keyExtractor={(item, index) => index.toString()}
-                    />
-                </SafeAreaView>
-            </LinearGradient>
+            > */}
+            <SafeAreaView style={styles.contentContainer}>
+                <FlatList
+                    ListHeaderComponent=
+                    {
+                        <SafeAreaView style={styles.container}>
+                            <Icon name="home-sharp" size={40} color="black" onPress={() => navigation.navigate("MainPage")}></Icon>
+                            <View style={styles.profileDesPart}>
+                                <Image source={{ uri: source }} style={styles.Image}></Image>
+                                <Text style={styles.name}>{name}</Text>
+                                <Text style={[styles.name, { fontWeight: "600", marginTop: 1, fontSize: RFPercentage(2) }]}>{email}</Text>
+                            </View>
+                            <Icon name="log-out" size={40} color="black" onPress={handlelogout}></Icon>
+                        </SafeAreaView>
+                    }
+                    showsVerticalScrollIndicator={false}
+                    data={ProfileSection}
+                    renderItem={({ item }) => <ProfileSectionsPart onPress={item.onPress === "updatePassword" ? changePassword : null} item={item.section} icon={item.icon} />}
+                    keyExtractor={(item, index) => index.toString()}
+                />
+            </SafeAreaView>
+            {/* </LinearGradient> */}
         </View>
     )
 }
@@ -67,9 +88,11 @@ const styles = StyleSheet.create({
         justifyContent: "space-between",
         minHeight: Dimensions.get("screen").height / 3,
         margin: RFPercentage(2),
+        borderRadius: 20,
+
     },
     profileDesPart: {
-        marginTop: RFPercentage(8)
+        marginTop: RFPercentage(8),
     },
     name: {
         marginTop: 10,
@@ -86,6 +109,7 @@ const styles = StyleSheet.create({
     },
     contentContainer: {
         flex: 1,
-        backgroundColor: "#fdf2e9", // İçerik arka plan rengini ayarladık
+        // İçerik arka plan rengini ayarladık
+
     }
 })

@@ -101,7 +101,7 @@ function App() {
 
   return (
     <GestureHandlerRootView style={{ flex: 1 }}>
-      {log_in
+      {!log_in
         ?
         <NavigationContainer>
           <LoginStack></LoginStack>
