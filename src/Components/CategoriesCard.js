@@ -3,7 +3,7 @@ import React, {useMemo} from 'react'
 import { TouchableOpacity } from 'react-native-gesture-handler'
 import { useDispatch, useSelector } from 'react-redux'
 import { RFPercentage } from 'react-native-responsive-fontsize'
-const CategoriesCard = ({ name }) => {
+const CategoriesCard = React.memo(({ name }) => {
   const dispatch = useDispatch()
 
   const data = useSelector((state) => state.category)
@@ -21,7 +21,7 @@ const CategoriesCard = ({ name }) => {
       <Text style={[styles.categoryName,  fav_Categories.includes(name) ? {color:  "white" } : null]}>{name.replace(/^\w/, c => c.toUpperCase())}</Text>
     </TouchableOpacity>
   )
-}
+})
 
 export default CategoriesCard
 

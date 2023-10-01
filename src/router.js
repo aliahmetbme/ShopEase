@@ -102,7 +102,7 @@ function CollecitonsStack({ navigation, route }) {
   return (
     <Stack.Navigator screenOptions={{ headerShown: false }}>
       <Stack.Screen name="Collections" component={Collections} ></Stack.Screen>
-      <Stack.Screen name="ProductsCollectionPage" component={ProductsCollectionPage} options={{headerShown:true, headerTitle : productsCollectionPageTitle, headerBackTitle: "Back" , }}></Stack.Screen>
+      <Stack.Screen name="ProductsCollectionPage" component={ProductsCollectionPage} options={{ headerShown: true, headerTitle: productsCollectionPageTitle, headerBackTitle: "Back", }}></Stack.Screen>
       <Stack.Screen name="Details" component={Details} options={{ gestureEnabled: false, headerShown: true, headerTitle: data.detailedData.title, headerBackTitle: " " }}></Stack.Screen>
     </Stack.Navigator>
   )
@@ -120,20 +120,14 @@ function App() {
 
   const bag = useSelector(state => state.bag).bag
   const amount_products_inBag = bag.length
-  const log_in = useSelector(state => state.login).isIn
-  
+
   const TabBarIcon = ({ color, size, iconName }) => {
     return <Icon name={iconName} size={size} color={color} />;
   };
 
-  return (
-    <GestureHandlerRootView style={{ flex: 1 }}>
-      {!userSession
-        ?
-        <NavigationContainer>
-          <LoginStack></LoginStack>
-        </NavigationContainer>
-        :
+  if (userSession) {
+    return (
+      <GestureHandlerRootView style={{ flex: 1 }}>
         <NavigationContainer>
           <Tab.Navigator
             screenOptions={({ route }) => ({
@@ -176,9 +170,16 @@ function App() {
             <Tab.Screen name="FavoritesStack" component={FavoritesStack} />
           </Tab.Navigator>
         </NavigationContainer>
-      }
-    </GestureHandlerRootView>
-  );
+      </GestureHandlerRootView>
+    );
+  } else {
+    return (
+      <NavigationContainer>
+        <LoginStack></LoginStack>
+      </NavigationContainer>
+
+    )
+  }
 }
 
 

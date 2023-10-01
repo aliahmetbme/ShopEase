@@ -30,7 +30,7 @@ const Categories = () => {
                 showsVerticalScrollIndicator={false}
                 data={variables.categories}
                 renderItem={renderItem}
-                keyExtractor={(item) => item}/>
+                keyExtractor={(item) => item.toString()}/>
         </SafeAreaView>
     )
 }
