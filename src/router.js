@@ -9,6 +9,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { RFPercentage } from 'react-native-responsive-fontsize';
 import Icon from "react-native-vector-icons/Ionicons"
 import useBottomNavigatorVisible from './Hooks/useBottomNavigatiorVisible';
+import auth from "@react-native-firebase/auth"
 
 import MainPage from "./Pages/MainPage";
 import Categories from "./Pages/Categories";
@@ -91,6 +92,13 @@ function FavoritesStack({ navigation, route }) {
 
 function App() {
 
+  const [userSession, setUserSession] = React.useState(false)
+  React.useEffect(() => {
+    auth().onAuthStateChanged(user => {
+      setUserSession(!!user)
+    })
+  })
+
   const bag = useSelector(state => state.bag).bag
   const amount_products_inBag = bag.length
   const log_in = useSelector(state => state.login).isIn
@@ -101,7 +109,7 @@ function App() {
 
   return (
     <GestureHandlerRootView style={{ flex: 1 }}>
-      {!log_in
+      {!userSession
         ?
         <NavigationContainer>
           <LoginStack></LoginStack>

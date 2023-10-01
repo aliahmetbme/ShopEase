@@ -6,6 +6,7 @@ import auth from "@react-native-firebase/auth"
 import { RFPercentage } from 'react-native-responsive-fontsize'
 import ProfileSectionsPart from '../Components/ProfileSectionsPart'
 import ProfileSection from '../ProjileSection.json'
+import { GoogleSignin } from '@react-native-google-signin/google-signin'
 //import LinearGradient from 'react-native-linear-gradient';
 
 const Profile = ({ navigation }) => {
@@ -42,6 +43,7 @@ const Profile = ({ navigation }) => {
         dispatch({ type: "LOG_OUT" })
         try {
             await auth().signOut()
+            await GoogleSignin.signOut();
         } catch (error) {
             console.log(error)
         }

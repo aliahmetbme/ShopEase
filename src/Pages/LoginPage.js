@@ -8,6 +8,7 @@ import RegisterPageInButton from '../Components/RegisterPageInButton'
 import Input from '../Components/Input'
 import { useDispatch } from 'react-redux'
 import auth from "@react-native-firebase/auth"
+import GoogleSignInButton from "../Components/GoogleSignInButton"
 
 const LoginPage = ({navigation}) => {
     const dispatch = useDispatch()
@@ -27,10 +28,31 @@ const LoginPage = ({navigation}) => {
             dispatch({type:"LOG_IN"})
 
         }).catch(error => {
+            const errorCode = error
 
-            if (error.code === 'auth/invalid-email') {
-              console.log('That email address is invalid!');
-            }
+            switch (errorCode) {
+                case 'auth/invalid-email':
+                  console.log('Geçersiz e-posta adresi!');
+                  break;
+                case 'auth/email-already-exists':
+                  console.log('Kullanıcı kayıtlı!');
+                  break;
+                case 'auth/user-not-found':
+                  console.log('Kullanıcı bulunamadı');
+                  break;
+                case 'auth/weak-password':
+                  console.log('Parola çok zayıf');
+                  break;
+                case 'auth/invalid-login':
+                  console.log('Geçersiz giriş');
+                  break;
+                case 'auth/wrong-password':
+                   console.log('Parola geçersiz');
+                   break;
+                default:
+                  console.log(errorCode)
+                  break;
+              }
             
             console.log(error)
         });             
@@ -58,6 +80,7 @@ const LoginPage = ({navigation}) => {
                     </View>
                 )}
             </Formik>
+            <GoogleSignInButton></GoogleSignInButton>
             <RegisterPageInButton onPress={goSingUp} />
             </View>
             </KeyboardAvoidingView>
