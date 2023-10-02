@@ -1,18 +1,31 @@
 import { Button, SafeAreaView, StyleSheet, Text, TextInput, Alert, Touchable, TouchableOpacity } from 'react-native'
-import React, {useState} from 'react'
+import React, {useState, useEffect} from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { FlatList } from 'react-native-gesture-handler'
 import Modal from 'react-native-modal';
 import AddCollectionButton from '../Components/AddCollectionButton';
 import CollecitonCard from '../Components/CollecitonCard';
 import { RFPercentage } from 'react-native-responsive-fontsize';
+import database from "@react-native-firebase/database"
+import auth from "@react-native-firebase/auth"
 
 const Collecitons = ({navigation}) => {
+
   const dispatch = useDispatch()
   const data = useSelector(state => state.collections)
 
   const [collectionName, setCollecitonName] = useState("")
   const [isModalVisible, setModalVisible] = useState(false)
+
+  useEffect((() => {
+    database().ref(`/${auth().currentUser.uid}/collections`).on("value", snapshot => {
+      const data = snapshot.val();
+      if (data) {
+        dispatch({type:"GET_COLLECTIONS_FROM_DB", payload:data})
+      } 
+    })
+  }), [])
+
 
   function toggleModal(){
     setModalVisible(!isModalVisible)

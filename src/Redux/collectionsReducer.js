@@ -1,3 +1,6 @@
+import database  from "@react-native-firebase/database";
+import auth from "@react-native-firebase/auth"
+
 const INITIAL_STATE = {
   collections: {
     MyCollection: []
@@ -7,12 +10,21 @@ const INITIAL_STATE = {
 
 export default (state = INITIAL_STATE, action) => {
   switch (action.type) {
+    case "GET_COLLECTIONS_FROM_DB":
+      const collections = action.payload 
+      return {
+        ...state,
+        collections: collections
+      };
     case "ADD_COLLECTIONS":
       if (action.payload === "") { return { ...state } }
       const newCollections = {
         ...state.collections,
         [action.payload]: []
       };
+      database().ref(`/${auth().currentUser.uid}/collections`).set(
+        newCollections
+      )
       return {
         ...state,
         collections: newCollections
@@ -28,6 +40,9 @@ export default (state = INITIAL_STATE, action) => {
           ...state.collections,
           [collectionName]: [...state.collections[collectionName], product]
         };
+        database().ref(`/${auth().currentUser.uid}/collections`).set(
+          newCollectionState
+        )
         return {
           ...state,
           collections: newCollectionState
