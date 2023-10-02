@@ -14,7 +14,7 @@ export default function MainPage({ navigation }) {
   const categories = useSelector((state) => state.category)
 
   React.useEffect(() => {
-    dispatch(fetchTodos("https://dummyjson.com/products?limit=0"))
+    dispatch(fetchTodos("https://dummyjson.com/products?limit=10"))
   }, [dispatch])
 
   const renderCategories = ({ item }) => {
