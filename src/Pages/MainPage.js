@@ -14,7 +14,7 @@ export default function MainPage({ navigation }) {
   const categories = useSelector((state) => state.category)
 
   React.useEffect(() => {
-    dispatch(fetchTodos("https://dummyjson.com/products?limit=10"))
+    dispatch(fetchTodos("https://dummyjson.com/products?limit=0&select=title,price,rating,thumbnail,brand,id"))
   }, [dispatch])
 
   const renderCategories = ({ item }) => {
@@ -28,7 +28,6 @@ export default function MainPage({ navigation }) {
       <ProductsDescCards
         onPress={() => navigation.navigate("Details", { id: item.id })}
         brand={item.brand}
-        description={item.description}
         thumbnail={item.thumbnail}
         name={item.title}
         rate={item.rating}
