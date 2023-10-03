@@ -1,11 +1,27 @@
 import { StyleSheet, Text, View, FlatList, SafeAreaView } from 'react-native'
-import React from 'react'
+import React, {useEffect} from 'react'
 import ProductsDescCards from '../Components/ProductsDescCards'
-import { useSelector } from "react-redux"
+import { useSelector, useDispatch, } from "react-redux"
 import LottieView from 'lottie-react-native'
+import database from "@react-native-firebase/database"
+import auth from "@react-native-firebase/auth"
+
 const Favorites = ({ navigation }) => {
   const favoritesData = useSelector(state => state.favorites)
+  const dispatch = useDispatch()
 
+  useEffect(
+    (() => {
+      database().ref(`/${auth().currentUser.uid}/favorites`).on(
+        "value", snaphsot => {
+          const favorites = snaphsot.val()
+          if (favorites){
+            dispatch({type:"GET_FAVORITES_FROM_DB", payload:favorites})
+          }
+        }
+      )
+    })
+  ,[])
 
   const renderData = ({ item }) => {
     return (
