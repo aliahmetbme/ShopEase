@@ -1,8 +1,0 @@
-[
-  {"section": "Orders", "icon": "bag-handle-outline", "onPress": "ShowOrders"},
-  {"section": "Saved Cards", "icon": "card-outline", "onPress": "ShowCards"},
-  {"section": "Saved Adress", "icon": "home-outline", "onPress": "ShowAdress"},
-  {"section": "Change Password", "icon": "chatbox-ellipses-outline", "onPress": "updatePassword"},
-  {"section": "Phone Number", "icon": "keypad-outline", "onPress": "updatePhoneNumber"},
-  {"section": "Language", "icon": "language-outline", "onPress": "updateLanguage"}
-]

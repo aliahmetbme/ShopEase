@@ -23,10 +23,12 @@ import LoginPage from './Pages/LoginPage';
 import RegistrationPage from './Pages/RegistrationPage';
 import ProductsCollectionPage from "./Pages/ProductsCollectionPage"
 import Profile from './Pages/Profile';
+import CardsPage from "./Pages/SavedCardsPage"
+import AdressesPage from "./Pages/SavedAdresses"
 
 const Stack = createStackNavigator();
 const Tab = createBottomTabNavigator();
-const Pages = ["Details", "PaidPage", "ComplatedPage", "Profile", "LoginPage"]
+const Pages = ["Details", "PaidPage", "ComplatedPage", "Profile", "LoginPage","CardsPage","AdressesPage"]
 
 const tabBarStyle = {
   backgroundColor: "#d1d5db",
@@ -53,6 +55,8 @@ function MainStack({ navigation, route }) {
       <Stack.Screen name="MainPage" component={MainPage}></Stack.Screen>
       <Stack.Screen name="Details" component={Details} options={{ gestureEnabled: false, headerShown: true, headerTitle: data.detailedData.title, headerBackTitle: " " }}></Stack.Screen>
       <Stack.Screen name="Profile" component={Profile} options={{ gestureEnabled: false, headerShown: false }} />
+      <Stack.Screen name='CardsPage' component={CardsPage} options={{ gestureEnabled: false, headerShown: true, headerTitle:"My Cards" }}/>
+      <Stack.Screen name='AdressesPage' component={AdressesPage}/>
     </Stack.Navigator>
   )
 }

@@ -36,7 +36,7 @@ const Favorites = ({ navigation }) => {
       />
     );
   };
-  console.log(favoritesData.favorites)
+
   return (
     <SafeAreaView style={styles.container}>
       <View style={styles.favoritesTitleContainer}>

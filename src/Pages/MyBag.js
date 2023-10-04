@@ -1,20 +1,25 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { FlatList, SafeAreaView, StyleSheet, Text, View } from 'react-native';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import LottieView from 'lottie-react-native';
 import BagButton from '../Components/BagButton';
 import ProductsInBag from '../Components/ProductsInBag';
+
+
 const MyBag = ({ navigation }) => {
+  const dispatch = useDispatch()
   try {
     const data = useSelector((state) => state.bag);
     const total = data.bag.reduce((accumulator, currentItem) => accumulator + currentItem.price, 0);
+
+
+
 
     const renderData = ({ item }) => {
       return (
         <ProductsInBag
           onPress={() => navigation.navigate("Details", { id: item.id })}
           brand={item.brand}
-          description={item.description}
           thumbnail={item.thumbnail}
           name={item.title}
           rate={item.rating}

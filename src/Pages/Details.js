@@ -43,8 +43,8 @@ const Details = ({ route }) => {
 
   function renderData({item}) {
     return(
-      <TouchableOpacity onPress={() => dispatch({type:"ADD_PRODUCT_COLLECTION", payload:[detailedData, item]} )} style={{padding:10,justifyContent:"center",backgroundColor:"#DADADA", alignSelf:"center",paddingHorizontal:20,borderRadius:20,margin:10}}>
-        <Text style={{fontSize:30}}>{item}</Text>
+      <TouchableOpacity onPress={() => dispatch({type:"ADD_PRODUCT_COLLECTION", payload:[detailedData, item]} )} style={{padding:10,borderColor:"#DADADA",paddingHorizontal:20,borderRadius:10,margin:10, borderWidth:2 ,fontSize:8}}>
+        <Text style={{fontSize:18}}>{item}</Text>
       </TouchableOpacity>
     )
   }
@@ -90,8 +90,10 @@ const Details = ({ route }) => {
         </View>
         <AddBagButton />
       </SafeAreaView>
-      <Modal style={{justifyContent:"flex-end",margin:0}} swipeDirection="down" onBackdropPress={toggleModal} propagateSwipe={true}	hideModalContentWhileAnimating={true} useNativeDriver={true} backdropOpacity={0.5} isVisible={isModalVisible}>
+      <Modal style={{justifyContent:"flex-end",margin:0, paddingTop:10, borderTopLeftRadius:20,borderTopRightRadius:20}} swipeDirection="down" onBackdropPress={toggleModal} propagateSwipe={true}	hideModalContentWhileAnimating={true} useNativeDriver={true} backdropOpacity={0.5} isVisible={isModalVisible}>
         <SafeAreaView style={{ flex: 0.3, backgroundColor:"#ffffff",borderTopWidth:5,borderColor:"#FF7F00"}}>
+          <Text style={{alignSelf:"center",fontSize:25}}>Add Collections </Text>
+          <Text style={{alignSelf:"center",fontSize:20}}>You can add products to collections</Text>
            <FlatList
             data={Object.keys(collectionsData)}
             renderItem={renderData}

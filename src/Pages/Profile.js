@@ -5,26 +5,17 @@ import { useDispatch } from 'react-redux'
 import auth from "@react-native-firebase/auth"
 import { RFPercentage } from 'react-native-responsive-fontsize'
 import ProfileSectionsPart from '../Components/ProfileSectionsPart'
-import ProfileSection from '../ProjileSection.json'
 import { GoogleSignin } from '@react-native-google-signin/google-signin'
 //import LinearGradient from 'react-native-linear-gradient';
 
 const Profile = ({ navigation }) => {
-    // const colorList = [
-    //     { color: '#FF7F00', opacity: '1' },
-    //     { color: '#FFA500', opacity: '1' },
-    //     { color: '#FFD700', opacity: '1' },
-    //     { color: '#FFEDCC', opacity: '1' }
-    // ]
-
+    const [source] = React.useState(auth().currentUser.photoURL || "https://images.pexels.com/photos/5506141/pexels-photo-5506141.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1")
     const name = auth().currentUser.displayName
     const email = auth().currentUser.email
 
-    // auth().currentUser.updateProfile({ displayName: "ALİ AHMET" })
-    // auth().currentUser.updateProfile({ photoURL: "https://fotolifeakademi.com/uploads/2020/04/dusuk-isikta-fotograf-cekme-724x394.webp" })
-    const [source] = React.useState(auth().currentUser.photoURL || "https://images.pexels.com/photos/5506141/pexels-photo-5506141.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1")
+    const dispatch = useDispatch()
 
-     function changePassword () {
+    function changePassword () {
         try {
             auth().sendPasswordResetEmail(email)
             Alert.alert("Uyarı", "Lütfen Mailinizi Kontrol Ediniz")
@@ -32,8 +23,6 @@ const Profile = ({ navigation }) => {
             console.log(error)
         }
     }
-
-    const dispatch = useDispatch()
 
     async function handlelogout() {
         dispatch({ type: "LOG_OUT" })
@@ -45,6 +34,15 @@ const Profile = ({ navigation }) => {
         }
     }
 
+    const ProfileSection = [
+        {"section": "Orders", "icon": "bag-handle-outline", "onPress": () => navigation.navigate('OrdersPage')},
+        {"section": "Saved Cards", "icon": "card-outline", "onPress": () => navigation.navigate('CardsPage')},
+        {"section": "Saved Adress", "icon": "home-outline", "onPress": () => navigation.navigate('AdressesPage')},
+        {"section": "Change Password", "icon": "chatbox-ellipses-outline", "onPress": changePassword},
+        {"section": "Phone Number", "icon": "keypad-outline", "onPress": () => {Alert.alert("WARNING", "YAKINDA")}},
+        {"section": "Language", "icon": "language-outline", "onPress": () => {Alert.alert("WARNING", "YAKINDA")}}
+    ]   
+    
     return (
         <View style={{ flex: 1, backgroundColor: "#d1d5db" }}>
             {/* <LinearGradient
@@ -69,7 +67,7 @@ const Profile = ({ navigation }) => {
                     }
                     showsVerticalScrollIndicator={false}
                     data={ProfileSection}
-                    renderItem={({ item }) => <ProfileSectionsPart onPress={item.onPress === "updatePassword" ? changePassword : null} item={item.section} icon={item.icon} />}
+                    renderItem={({ item }) => <ProfileSectionsPart onPress={item.onPress} item={item.section} icon={item.icon} />}
                     keyExtractor={(item, index) => index.toString()}
                 />
             </SafeAreaView>
@@ -111,3 +109,14 @@ const styles = StyleSheet.create({
 
     }
 })
+
+
+// auth().currentUser.updateProfile({ displayName: "ALİ AHMET" })
+    // auth().currentUser.updateProfile({ photoURL: "https://fotolifeakademi.com/uploads/2020/04/dusuk-isikta-fotograf-cekme-724x394.webp" })
+
+        // const colorList = [
+    //     { color: '#FF7F00', opacity: '1' },
+    //     { color: '#FFA500', opacity: '1' },
+    //     { color: '#FFD700', opacity: '1' },
+    //     { color: '#FFEDCC', opacity: '1' }
+    // ]

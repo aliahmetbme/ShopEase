@@ -5,6 +5,7 @@ import categoryReducer from "./categoryReducer";
 import favoritesReducer from "./favoritesReducer";
 import collectionsReducer from "./collectionsReducer";
 import bagReducer from "./bagReducer";
+import cardIdReducer from "./cardIdReducer";
 
 const store = configureStore({
   reducer: {
@@ -14,6 +15,7 @@ const store = configureStore({
     favorites: favoritesReducer,
     collections: collectionsReducer,
     bag: bagReducer,
+    id: cardIdReducer
   },
   middleware: (getDefaultMiddleware) =>
     process.env.NODE_ENV === "development"

@@ -4,7 +4,7 @@ import { RFPercentage } from 'react-native-responsive-fontsize'
 import Icon from "react-native-vector-icons/Ionicons"
 
 const ProfileSectionsPart = ({item, onPress, icon}) => {
-
+  console.log(onPress)
   return (
     <TouchableOpacity onPress={onPress} style={styles.container}>
       <Icon name={icon} size={40} color="#FF7F00"></Icon>

@@ -17,14 +17,7 @@ const Collecitons = ({navigation}) => {
   const [collectionName, setCollecitonName] = useState("")
   const [isModalVisible, setModalVisible] = useState(false)
 
-  useEffect((() => {
-    database().ref(`/${auth().currentUser.uid}/collections`).on("value", snapshot => {
-      const data = snapshot.val();
-      if (data) {
-        dispatch({type:"GET_COLLECTIONS_FROM_DB", payload:data})
-      } 
-    })
-  }), [])
+
 
 
   function toggleModal(){

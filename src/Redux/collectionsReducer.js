@@ -1,5 +1,6 @@
 import database  from "@react-native-firebase/database";
 import auth from "@react-native-firebase/auth"
+import { Alert } from "react-native";
 
 const INITIAL_STATE = {
   collections: {
@@ -43,6 +44,7 @@ export default (state = INITIAL_STATE, action) => {
         database().ref(`/${auth().currentUser.uid}/collections`).set(
           newCollectionState
         )
+        Alert.alert("Congratss", `You added the product to ${collectionName} colleciton succesfully`)
         return {
           ...state,
           collections: newCollectionState
