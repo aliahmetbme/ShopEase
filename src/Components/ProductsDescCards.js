@@ -41,12 +41,14 @@ const styles = StyleSheet.create({
     brand: {
         fontSize: 15,
         fontWeight: "bold",
-        marginRight: 5
+        marginRight: 5,
+        color:"black"
     },
     name: {
         fontWeight: "200",
         fontSize: 10,
-        verticalAlign: "bottom"
+        verticalAlign: "bottom",
+        color:"black"
     },
     price:{
         fontWeight:"900",

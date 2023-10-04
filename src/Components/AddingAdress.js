@@ -20,7 +20,7 @@ export default function AddingAdress({ onPress }) {
     }
 
     function addAdreesToDB(values) {
-        console.log(values)
+        
 
         if (Object.values(values).includes("")) {
             Alert.alert("HATA", "BOŞ BIRAKILMAZ")

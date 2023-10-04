@@ -29,34 +29,35 @@ const styles = StyleSheet.create({
     container: {
         margin: 15,
         backgroundColor: "#DADADA",
-        paddingHorizontal: 20,
+        paddingHorizontal: 10,
         borderRadius: 20,
     },
     adressDescription: {
         marginTop:0,
-        margin: 20,
-        padding: 20,
+        padding: 10,
         justifyContent: "space-around",
-        flex: 1
+        flex: 1,
+        color:"black"
     },
     icon:{
         flex:1,
-        margin:20,
-        marginHorizontal:0,
+        margin:10,
         flexDirection: "row",
+        color:"black"
     },
     adressTitle:{
-        marginHorizontal:20,
-        marginBottom:0,
+        marginHorizontal:10,
         fontSize:25,
         fontWeight:"700",
+        color:"black"
     },
     name:{
         fontSize:15,
-        marginBottom:5
+        color:"black"
     },
     adress:{
         fontSize:15,
-        marginVertical:5
+        marginVertical:5,
+        color:"black"
     }
 })
