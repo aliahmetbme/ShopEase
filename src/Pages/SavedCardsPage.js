@@ -14,9 +14,7 @@ const SavedCardsPage = ({isModal}) => {
 
   function toggleModal() {
     setModalVisible(!isModalVisible)
-  }
-  console.log(creditcards)
-  
+  }  
   function renderItem({ item, index }) {
     return (
       <CreditCard isModal={isModal} index={index} props={item}></CreditCard>

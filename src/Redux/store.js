@@ -6,7 +6,7 @@ import favoritesReducer from "./favoritesReducer";
 import collectionsReducer from "./collectionsReducer";
 import bagReducer from "./bagReducer";
 import cardIdReducer from "./cardIdReducer";
-
+import chosenAdressReducer from "./chosenAdressReducer";
 const store = configureStore({
   reducer: {
     todos: todosSlice,
@@ -15,7 +15,8 @@ const store = configureStore({
     favorites: favoritesReducer,
     collections: collectionsReducer,
     bag: bagReducer,
-    id: cardIdReducer
+    id: cardIdReducer,
+    adress: chosenAdressReducer
   },
   middleware: (getDefaultMiddleware) =>
     process.env.NODE_ENV === "development"

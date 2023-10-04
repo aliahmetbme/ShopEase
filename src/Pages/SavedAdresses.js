@@ -7,7 +7,7 @@ import AddingAdress from "../Components/AddingAdress"
 import database from "@react-native-firebase/database"
 import auth from "@react-native-firebase/auth"
 
-const SavedAdresses = () => {
+const SavedAdresses = ({ isModal }) => {
   const [isModalVisible, setModalVisible] = useState(false)
   const [adresses, setAdresses] = useState([])
 
@@ -16,7 +16,7 @@ const SavedAdresses = () => {
   }
   function renderItem({ item, index }) {
     return (
-      <AdressCard props={item}></AdressCard>
+      <AdressCard isModal={isModal} props={item}></AdressCard>
     )
   }
   useEffect((
@@ -38,12 +38,15 @@ const SavedAdresses = () => {
 
   return (
     <SafeAreaView style={styles.container}>
-      <FlatList 
+      <FlatList
         data={adresses}
-        renderItem={renderItem}/>
-      <TouchableOpacity onPress={toggleModal} style={{ alignItems: "flex-end", justifyContent: "flex-end", alignSelf: "center" }}>
-        <Icon name="add-circle-outline" size={80} color={"black"} />
-      </TouchableOpacity>
+        renderItem={renderItem}
+        ListFooterComponent={
+          !isModal ? <TouchableOpacity onPress={toggleModal} style={{ alignItems: "flex-end", justifyContent: "flex-end", alignSelf: "center" }}>
+            <Icon name="add-circle-outline" size={80} color={"black"} />
+          </TouchableOpacity> : null
+        } />
+
       <Modal style={{ justifyContent: "flex-end", margin: 0, paddingTop: 10, borderTopLeftRadius: 20, borderTopRightRadius: 20 }} swipeDirection="down" onBackdropPress={toggleModal} propagateSwipe={true} hideModalContentWhileAnimating={true} useNativeDriver={true} backdropOpacity={0.5} isVisible={isModalVisible}>
         <AddingAdress onPress={toggleModal}></AddingAdress>
       </Modal>

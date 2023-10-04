@@ -8,10 +8,16 @@ import { useSelector } from 'react-redux'
 import database from "@react-native-firebase/database"
 import auth from "@react-native-firebase/auth"
 import { RFPercentage } from 'react-native-responsive-fontsize'
+import SavedAdresses from '../Pages/SavedAdresses'
 const Address = ({ navigation }) => {
     const card = useSelector((state) => state.id).cardId;
+    const adress = useSelector((state) => state.adress).adress;
+
     const [isModalVisible, setModalVisible] = useState(false);
     const [isAnyCardChoose, setisAnyCardChoose] = useState(false);
+    const [isAnyAdressChosen, setisAnyAdressChosen] = useState(false);
+    const [isAdressModalVisible, setIsAdressModalVisible] = useState(false)
+
     const [initialValues, setInitialValues] = useState({
         name: "",
         sirName: "",
@@ -40,11 +46,33 @@ const Address = ({ navigation }) => {
         }
     }, [isAnyCardChoose, card]);
 
+    useEffect(() => {
+        if (isAnyAdressChosen && adress) {
+            setInitialValues({
+                ...initialValues,
+                name: adress.name,
+                sirName: adress.sirname,
+                phoneNumber: adress.phoneNumber,
+                Country: adress.country,
+                city: adress.city,
+                town: adress.town,
+                detailedAdress: adress.detailedAdress,
+            });
+        }
+    }, [isAnyAdressChosen, adress]);
+
     function toggleModal() {
         if (isModalVisible) {
             setisAnyCardChoose(true);
         }
         setModalVisible(!isModalVisible);
+    }
+
+    function toggleModalAdress() {
+        if (isAdressModalVisible) {
+            setisAnyAdressChosen(true);
+        }
+        setIsAdressModalVisible(!isAdressModalVisible);
     }
 
     const getPaid = (values) => {
@@ -57,14 +85,14 @@ const Address = ({ navigation }) => {
     }
     return (
         <KeyboardAvoidingView
-            
+
             style={{ flex: 1 }}
             behavior="height">
             <ScrollView
                 keyboardDismissMode="on-drag">
 
                 <Formik
-                enableReinitialize={true}
+                    enableReinitialize={true}
                     initialValues={initialValues}
                     onSubmit={(values) => getPaid(values)}>
                     {({ handleChange, handleSubmit, values }) => (
@@ -74,19 +102,19 @@ const Address = ({ navigation }) => {
                             <View style={{ flexDirection: "row" }}>
                                 <TextInput
                                     placeholder='Name'
-                                    value={values.name}
+                                    value={isAnyAdressChosen ? adress.name : values.name}
                                     onChangeText={handleChange("name")}
                                     style={{ backgroundColor: "#DADADA", flex: 1, margin: 10, padding: 20, borderRadius: 10 }} />
                                 <TextInput
                                     placeholder='Sir Name'
-                                    value={values.sirName}
+                                    value={isAnyAdressChosen ? adress.sirname : values.sirName}
                                     onChangeText={handleChange("sirName")}
                                     style={{ backgroundColor: "#DADADA", flex: 1, margin: 10, padding: 20, borderRadius: 10 }} />
                             </View>
                             <TextInput
                                 keyboardType="numeric"
                                 placeholder='Phone Number'
-                                value={values.phoneNumber}
+                                value={isAnyAdressChosen ? adress.phoneNumber : values.phoneNumber}
                                 onChangeText={handleChange("phoneNumber")}
                                 style={{ borderWidth: 2, borderColor: "#DADADA", margin: 10, padding: 20, borderRadius: 10 }} />
                             {/* Customer Info */}
@@ -95,17 +123,17 @@ const Address = ({ navigation }) => {
                             <View style={{ flexDirection: "row" }}>
                                 <TextInput
                                     placeholder='Country'
-                                    value={values.Country}
+                                    value={isAnyAdressChosen ? adress.country : values.Country}
                                     onChangeText={handleChange("Country")}
                                     style={{ backgroundColor: "#DADADA", flex: 1, margin: 10, padding: 20, borderRadius: 10 }} />
                                 <TextInput
                                     placeholder='City'
-                                    value={values.city}
+                                    value={isAnyAdressChosen ? adress.city : values.city}
                                     onChangeText={handleChange("city")}
                                     style={{ backgroundColor: "#DADADA", flex: 1, margin: 10, padding: 20, borderRadius: 10 }} />
                                 <TextInput
                                     placeholder='Town'
-                                    value={values.town}
+                                    value={isAnyAdressChosen ? adress.town : values.town}
                                     onChangeText={handleChange("town")}
                                     style={{ backgroundColor: "#DADADA", flex: 1, margin: 10, padding: 20, borderRadius: 10 }} />
                             </View>
@@ -113,9 +141,13 @@ const Address = ({ navigation }) => {
                             {/* Credit Card Info */}
                             <TextInput
                                 placeholder='Detailed Adress'
-                                value={values.detailedAdress}
+                                value={isAnyAdressChosen ? adress.detailedAdress : values.detailedAdress}
                                 onChangeText={handleChange("detailedAdress")}
                                 style={{ backgroundColor: "#DADADA", margin: 10, padding: 20, borderRadius: 10 }} />
+                            <View style={{ flexDirection: "row" }}>
+                                <TouchableOpacity onPress={toggleModalAdress} style={{ backgroundColor: "#DADADA", alignSelf: "flex-start", padding: 15, marginHorizontal: 10, borderRadius: 15 }} />
+                                <Text style={{ color: "black", alignSelf: "center", fontWeight: "bold" }}>Take Adress Info from saved</Text>
+                            </View>
                             <Text style={{ margin: 10, fontWeight: "700", fontSize: 19, color: "#FF7F00" }}>Credit Card Information </Text>
                             <TextInput
                                 placeholder='Card Owner'
@@ -146,7 +178,7 @@ const Address = ({ navigation }) => {
                                     fontSize={15}
                                     maxLength={2}
                                     value={isAnyCardChoose ? card.month : values.month}
-                                    onChangeText={handleChange("month" )}
+                                    onChangeText={handleChange("month")}
                                     style={{ backgroundColor: "#DADADA", flex: 1, marginRight: 100, marginLeft: 0, padding: 5, borderRadius: 10, paddingHorizontal: 30, borderTopLeftRadius: 0, borderBottomLeftRadius: 0, borderLeftWidth: 1 }} />
                                 <TextInput
                                     keyboardType='numeric'
@@ -176,8 +208,25 @@ const Address = ({ navigation }) => {
                                 useNativeDriver={true}
                                 backdropOpacity={0.5}
                                 isVisible={isModalVisible}
-                                style={{ alignSelf: "center", marginTop: RFPercentage(10),flex:0.7 }}>
+                                style={{ alignSelf: "center", marginTop: RFPercentage(10), flex: 0.7 }}>
                                 <SavedCardsPage isModal={true}></SavedCardsPage>
+                            </Modal>
+                            <Modal
+                                swipeDirection="down"
+                                onBackdropPress={toggleModalAdress}
+                                propagateSwipe={true}
+                                hideModalContentWhileAnimating={true}
+                                useNativeDriver={true}
+                                backdropOpacity={0.5}
+                                isVisible={isAdressModalVisible}
+                                style={{
+                                    alignSelf: "center",
+                                    marginHorizontal:0,
+                                    marginTop: RFPercentage(20),
+                                    flex: 0.7, // Modal içeriği tam ekranı kaplasın
+                                }}
+                            >
+                                <SavedAdresses isModal={true} />
                             </Modal>
                             {/* Credit Card Info */}
                             <ComplateShopping onPress={handleSubmit} navigation={navigation} />
