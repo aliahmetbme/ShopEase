@@ -3,7 +3,7 @@ import React from 'react'
 import { RFPercentage } from 'react-native-responsive-fontsize'
 import { useDispatch } from 'react-redux'
 
-const CreditCard = ({ index ,props }) => {
+const CreditCard = ({ index ,props, isModal }) => {
   const dispatch = useDispatch()
   function formatNumberWithSpaces(number) {
     // Sayıyı metne çevirin
@@ -27,7 +27,7 @@ const CreditCard = ({ index ,props }) => {
 const formattedNumber = formatNumberWithSpaces(props.cardNumber);
 
   return (
-    <TouchableOpacity onPress={() => dispatch({type:"SET_ID", payload:props })} style={{ borderRadius: 20 }}>
+    <TouchableOpacity disabled={!isModal} onPress={() => dispatch({type:"SET_ID", payload:props })} style={{ borderRadius: 20 }}>
       <ImageBackground source={require("../Assests/bg.png")} imageStyle={styles.container} style={{ padding: 10, paddingHorizontal: 20, margin: 10 }}>
         <View style={{ flexDirection: "row", justifyContent: "space-between" }}>
           <View style={{ flexDirection: "row", justifyContent: "space-between" }}>

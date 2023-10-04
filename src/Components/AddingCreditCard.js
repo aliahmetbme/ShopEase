@@ -51,15 +51,15 @@ export default function AddCreditCard({ onPress }) {
 
 
     return (
-        <SafeAreaView style={{ flex: 1, backgroundColor: "#ffffff", padding: 10 }}>
+        <SafeAreaView style={{ backgroundColor: "#ffffff", padding: 10,paddingTop:0 ,marginBottom:0, justifyContent:"flex-end",borderRadius:20,marginHorizontal:10 }}>
             <Formik
                 initialValues={initialValues}
                 onSubmit={values => addCreditCardToDB(values)}
             >
                 {({ handleChange, handleSubmit, values }) => (
-                    <View style={{flex:1}}>
-                    <SafeAreaView style={{ flex: 0.4, }}>
-                        <ImageBackground source={require("../Assests/bg.png")} imageStyle={{ borderRadius: 20 }} style={{ margin: 10, padding: 10 }}>
+                    <View style={{justifyContent:"flex-end"}}>
+                    <SafeAreaView >
+                        <ImageBackground source={require("../Assests/bg.png")} imageStyle={{ borderRadius: 20 }} style={{marginTop:5 ,margin: 10,marginHorizontal:0, padding: 10 }}>
                             
                             <View style={{ flexDirection: "row", backgroundColor: "#DADADA", margin: 10, marginVertical: 20, padding: 10, borderRadius: 10 }}>
                                 <Image source={require("../Assests/logo.png")} style={{ resizeMode: "contain", width: 30, height: 30 }}></Image>
@@ -114,7 +114,7 @@ export default function AddCreditCard({ onPress }) {
 
                         </ImageBackground>
                     </SafeAreaView>
-                    <View style={{flex:0.2, justifyContent:"center"}}>
+                    <View >
                     <TouchableOpacity onPress={handleSubmit} style={{ alignSelf: "flex-end", margin:15, backgroundColor:"black", padding:10, paddingHorizontal:20, borderRadius:20 }}>
                             <Text style={{color:"white", fontWeight:"900", fontSize:20}}>ADD CREDIT CARD</Text>
                     </TouchableOpacity>

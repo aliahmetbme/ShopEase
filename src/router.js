@@ -56,7 +56,7 @@ function MainStack({ navigation, route }) {
       <Stack.Screen name="Details" component={Details} options={{ gestureEnabled: false, headerShown: true, headerTitle: data.detailedData.title, headerBackTitle: " " }}></Stack.Screen>
       <Stack.Screen name="Profile" component={Profile} options={{ gestureEnabled: false, headerShown: false }} />
       <Stack.Screen name='CardsPage' component={CardsPage} options={{ gestureEnabled: false, headerShown: true, headerTitle:"My Cards" }}/>
-      <Stack.Screen name='AdressesPage' component={AdressesPage}/>
+      <Stack.Screen name='AdressesPage' component={AdressesPage} options={{ gestureEnabled: false, headerShown: true, headerTitle:"My Adresses"  }}/>
     </Stack.Navigator>
   )
 }

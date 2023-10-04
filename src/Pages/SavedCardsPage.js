@@ -16,9 +16,10 @@ const SavedCardsPage = ({isModal}) => {
     setModalVisible(!isModalVisible)
   }
   console.log(creditcards)
+  
   function renderItem({ item, index }) {
     return (
-      <CreditCard index={index} props={item}></CreditCard>
+      <CreditCard isModal={isModal} index={index} props={item}></CreditCard>
     )
   }
   useEffect((
@@ -59,7 +60,7 @@ const SavedCardsPage = ({isModal}) => {
         useNativeDriver={true}
         backdropOpacity={0.5}
         isVisible={isModalVisible}
-        style={{ flex: 1, margin: 0 }}
+        style={{ flex: 1, margin: 0, justifyContent:"flex-end",}}
       >
         <AddingCreditCard onPress={toggleModal} />
       </Modal>
