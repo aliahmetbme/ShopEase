@@ -9,7 +9,6 @@ Furthermore, I have implemented a password reset functionality, allowing users t
 
 I am proud of the end result and look forward to sharing this project with you
 
-Here is the GitHub link: https://lnkd.in/dSrh2jfc
 
 <table>
   <tr>
