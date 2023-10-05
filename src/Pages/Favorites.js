@@ -17,11 +17,13 @@ const Favorites = ({ navigation }) => {
           const favorites = snaphsot.val()
           if (favorites){
             dispatch({type:"GET_FAVORITES_FROM_DB", payload:favorites})
+          }  else {
+            dispatch({type:"GET_FAVORITES_FROM_DB", payload:[]})
           }
         }
       )
     })
-  ,[])
+  ,[auth().currentUser.uid])
 
   const renderData = ({ item }) => {
     return (

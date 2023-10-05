@@ -30,7 +30,7 @@ import OrderDetails from './Pages/OrderDetails';
 
 const Stack = createStackNavigator();
 const Tab = createBottomTabNavigator();
-const Pages = ["Details", "PaidPage", "ComplatedPage", "Profile", "LoginPage","CardsPage","AdressesPage"]
+const Pages = ["Details", "PaidPage", "ComplatedPage", "Profile","OrderDetails" ,"LoginPage","MyOrdersPage","CardsPage", "AdressesPage"]
 
 const tabBarStyle = {
   backgroundColor: "#d1d5db",
@@ -58,10 +58,10 @@ function MainStack({ navigation, route }) {
       <Stack.Screen name="MainPage" component={MainPage}></Stack.Screen>
       <Stack.Screen name="Details" component={Details} options={{ gestureEnabled: false, headerShown: true, headerTitle: data.detailedData.title, headerBackTitle: " " }}></Stack.Screen>
       <Stack.Screen name="Profile" component={Profile} options={{ gestureEnabled: false, headerShown: false }} />
-      <Stack.Screen name='CardsPage' component={CardsPage} options={{ gestureEnabled: false, headerShown: true, headerTitle:"My Cards" }}/>
-      <Stack.Screen name='AdressesPage' component={AdressesPage} options={{ gestureEnabled: false, headerShown: true, headerTitle:"My Adresses"  }}/>
-       <Stack.Screen name='MyOrdersPage' component={MyOrdersPage}/>  
-       <Stack.Screen name='OrderDetails' component={OrderDetails}/>  
+      <Stack.Screen name='CardsPage' component={CardsPage} options={{ gestureEnabled: false, headerShown: true, headerTitle: "My Cards" }} />
+      <Stack.Screen name='AdressesPage' component={AdressesPage} options={{ gestureEnabled: false, headerShown: true, headerTitle: "My Adresses" }} />
+      <Stack.Screen name='MyOrdersPage' component={MyOrdersPage} options={{headerShown:true, headerTitle:"Orders"}}/>
+      <Stack.Screen name='OrderDetails' component={OrderDetails} options={{headerShown:true, headerTitle:"Order Detail"}}/>
 
     </Stack.Navigator>
   )
@@ -112,7 +112,7 @@ function CollecitonsStack({ navigation, route }) {
   return (
     <Stack.Navigator screenOptions={{ headerShown: false }}>
       <Stack.Screen name="Collections" component={Collections} ></Stack.Screen>
-      <Stack.Screen name="ProductsCollectionPage" component={ProductsCollectionPage} options={{ headerShown: true, headerTitle: productsCollectionPageTitle, headerBackTitle: "Back", }}></Stack.Screen>
+      <Stack.Screen name="ProductsCollectionPage" component={ProductsCollectionPage} options={{ headerShown: true, headerTitle: productsCollectionPageTitle, headerBackTitle: "Back", headerBackgroundContainerStyle:{color:"#d1d5db"}}}></Stack.Screen>
       <Stack.Screen name="Details" component={Details} options={{ gestureEnabled: false, headerShown: true, headerTitle: data.detailedData.title, headerBackTitle: " " }}></Stack.Screen>
     </Stack.Navigator>
   )
@@ -129,7 +129,7 @@ function App() {
   })
 
   const bag = useSelector(state => state.bag).bag
-  const amount_products_inBag = bag.length
+  const amount_products_inBag = bag?.length || 0
 
   const TabBarIcon = ({ color, size, iconName }) => {
     return <Icon name={iconName} size={size} color={color} />;

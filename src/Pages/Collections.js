@@ -8,7 +8,7 @@ import CollecitonCard from '../Components/CollecitonCard';
 import { RFPercentage } from 'react-native-responsive-fontsize';
 import database from "@react-native-firebase/database"
 import auth from "@react-native-firebase/auth"
-
+import LottieView from 'lottie-react-native';
 const Collecitons = ({navigation}) => {
 
   const dispatch = useDispatch()
@@ -45,10 +45,19 @@ const Collecitons = ({navigation}) => {
 
   return (
     <SafeAreaView style={styles.container}>
-      <FlatList
+      {Object.keys(data.collections).length !==0  ? <FlatList
         numColumns={2}
         data={Object.keys(data.collections)}
-        renderItem={renderData}></FlatList>
+        renderItem={renderData}></FlatList> 
+        :         
+        <SafeAreaView style={{ flex: 1, justifyContent: "center" }}>
+        <LottieView
+          style={{ flex: 0.5 }}
+          source={require("../Assests/OpckBVdJfy.json")}
+          autoPlay={true}
+        />
+        <Text style={{textAlign:"center", alignSelf: "center", verticalAlign: "top", color: "#FF7F00", fontWeight: "800", fontSize: 30 }}>There are not any Collecitons</Text>
+      </SafeAreaView>}
       <Modal swipeDirection="down" onBackdropPress={toggleModal} propagateSwipe={true}	hideModalContentWhileAnimating={true} useNativeDriver={true} backdropOpacity={0.5} isVisible={isModalVisible}>
         <SafeAreaView style={{ flex: RFPercentage(0.01), backgroundColor:"#ffffff",borderWidth:5,borderColor:"#FF7F00",padding:10,borderRadius:20}}>
            <Text style={{ margin:10, fontWeight:"bold", fontSize:18}}>Colleciton Name</Text>

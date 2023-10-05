@@ -22,21 +22,28 @@ export default function MainPage({ navigation }) {
 
   useEffect((() => {
     database().ref(`/${auth().currentUser.uid}/bag`).on("value", snapshot => {
-      const productsInBag = snapshot.val()
+      
+      let productsInBag = snapshot.val()
       if (productsInBag) {
         dispatch({type:"GET_BAG_FROM_DB", payload:productsInBag})
-      } 
+      } else {
+        dispatch({type:"GET_BAG_FROM_DB", payload:[]})
+      }
     })
-  }), [])
+  }), [auth().currentUser.uid])
 
   useEffect((() => {
     database().ref(`/${auth().currentUser.uid}/collections`).on("value", snapshot => {
-      const data = snapshot.val();
+      
+      let data = snapshot.val();
       if (data) {
         dispatch({type:"GET_COLLECTIONS_FROM_DB", payload:data})
-      } 
+      } else {
+        dispatch({type:"GET_COLLECTIONS_FROM_DB", payload:[]})
+
+      }
     })
-  }), [])
+  }), [auth().currentUser.uid])
 
   const renderCategories = ({ item }) => {
     return (

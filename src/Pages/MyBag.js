@@ -34,7 +34,7 @@ const MyBag = ({ navigation }) => {
 
     if (Array.isArray(data.bag) && data.bag.length === 0) {
       return (
-        <View style={{ flex: 1, justifyContent: "center" }}>
+        <View style={{ flex: 1, justifyContent: "center", backgroundColor:"#d1d5db" }}>
           <LottieView
             style={{ flex: 0.5 }}
             source={require("../Assests/vPmqkZWwb3.json")}
@@ -72,6 +72,6 @@ export default MyBag;
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#E6E6E6"
+    backgroundColor: "#d1d5db"
   },
 });

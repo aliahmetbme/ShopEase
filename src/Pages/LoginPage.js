@@ -32,22 +32,22 @@ const LoginPage = ({ navigation }) => {
 
                 switch (errorCode) {
                     case 'auth/invalid-email':
-                        console.log('Geçersiz e-posta adresi!');
+                        Alert.alert("Warn",'Geçersiz e-posta adresi!');
                         break;
                     case 'auth/email-already-exists':
-                        console.log('Kullanıcı kayıtlı!');
+                        Alert.alert("Warn",'Kullanıcı kayıtlı!');
                         break;
                     case 'auth/user-not-found':
-                        console.log('Kullanıcı bulunamadı');
+                        Alert.alert("Warn",'Kullanıcı bulunamadı');
                         break;
                     case 'auth/weak-password':
-                        console.log('Parola çok zayıf');
+                        Alert.alert("Warn",'Parola çok zayıf');
                         break;
                     case 'auth/invalid-login':
-                        console.log('Geçersiz giriş');
+                        Alert.alert("Warn",'Geçersiz giriş');
                         break;
                     case 'auth/wrong-password':
-                        console.log('Parola geçersiz');
+                        Alert.alert("Warn",'Parola geçersiz');
                         break;
                     default:
                         console.log(errorCode)

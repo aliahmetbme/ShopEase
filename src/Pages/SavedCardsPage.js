@@ -3,7 +3,7 @@ import React, { useState, useEffect } from 'react'
 import CreditCard from '../Components/CreditCard'
 import Icon from "react-native-vector-icons/Ionicons"
 import Modal from 'react-native-modal'
-import { RFPercentage } from 'react-native-responsive-fontsize'
+import LottieView from 'lottie-react-native'
 import database from "@react-native-firebase/database"
 import auth from "@react-native-firebase/auth"
 import AddingCreditCard from "../Components/AddingCreditCard"
@@ -38,7 +38,7 @@ const SavedCardsPage = ({isModal}) => {
 
   return (
     <SafeAreaView style={styles.container}>
-      <FlatList
+      {creditcards.length !== 0 ? <FlatList
         data={creditcards}
         renderItem={renderItem}
         keyExtractor={(item, index) => index.toString()} 
@@ -48,7 +48,18 @@ const SavedCardsPage = ({isModal}) => {
               <Icon name="add-circle-outline" size={80} color={"black"} />
             </TouchableOpacity>
           </View> : null
-        } />
+        } /> :             <SafeAreaView style={{ flex: 1, justifyContent: "center" }}>
+        <LottieView
+          style={{ flex: 0.9}}
+          source={require("../Assests/YoUuBB7nge.json")}
+          autoPlay={true}
+        />
+        <View style={{ justifyContent: "flex-end" }}>
+            <TouchableOpacity onPress={toggleModal} style={{ alignSelf: "center" }}>
+              <Icon name="add-circle-outline" size={80} color={"black"} />
+            </TouchableOpacity>
+          </View>
+      </SafeAreaView>}
 
       <Modal
         swipeDirection="down"

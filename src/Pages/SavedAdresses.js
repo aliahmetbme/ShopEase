@@ -6,7 +6,7 @@ import Modal from "react-native-modal"
 import AddingAdress from "../Components/AddingAdress"
 import database from "@react-native-firebase/database"
 import auth from "@react-native-firebase/auth"
-
+import LottieView from 'lottie-react-native'
 const SavedAdresses = ({ isModal }) => {
   const [isModalVisible, setModalVisible] = useState(false)
   const [adresses, setAdresses] = useState([])
@@ -38,7 +38,7 @@ const SavedAdresses = ({ isModal }) => {
 
   return (
     <SafeAreaView style={styles.container}>
-      <FlatList
+      {adresses.length !== 0 ? <FlatList
         data={adresses}
         renderItem={renderItem}
         ListFooterComponent={
@@ -46,6 +46,17 @@ const SavedAdresses = ({ isModal }) => {
             <Icon name="add-circle-outline" size={80} color={"black"} />
           </TouchableOpacity> : null
         } />
+        :
+        <SafeAreaView style={{ flex: 1, justifyContent: "center" }}>
+        <LottieView
+          style={{ flex: 1 }}
+          source={require("../Assests/animation_lnd6na2d.json")}
+          autoPlay={true}
+        />
+        <TouchableOpacity onPress={toggleModal} style={{ alignItems: "flex-end", justifyContent: "flex-end", alignSelf: "center" }}>
+            <Icon name="add-circle-outline" size={80} color={"black"} />
+          </TouchableOpacity> 
+      </SafeAreaView>}
 
       <Modal style={{ justifyContent: "flex-end", margin: 0, paddingTop: 10, borderTopLeftRadius: 20, borderTopRightRadius: 20 }} swipeDirection="down" onBackdropPress={toggleModal} propagateSwipe={true} hideModalContentWhileAnimating={true} useNativeDriver={true} backdropOpacity={0.5} isVisible={isModalVisible}>
         <AddingAdress onPress={toggleModal}></AddingAdress>
