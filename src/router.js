@@ -21,10 +21,12 @@ import PaidPage from './Pages/PaidPage';
 import ComplatedPage from './Pages/ComplatedPage';
 import LoginPage from './Pages/LoginPage';
 import RegistrationPage from './Pages/RegistrationPage';
-import ProductsCollectionPage from "./Pages/ProductsCollectionPage"
+import ProductsCollectionPage from "./Pages/ProductsCollectionPage";
 import Profile from './Pages/Profile';
-import CardsPage from "./Pages/SavedCardsPage"
-import AdressesPage from "./Pages/SavedAdresses"
+import CardsPage from "./Pages/SavedCardsPage";
+import AdressesPage from "./Pages/SavedAdresses";
+import MyOrdersPage from "./Pages/MyOrdersPage";
+import OrderDetails from './Pages/OrderDetails';
 
 const Stack = createStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -50,6 +52,7 @@ function MainStack({ navigation, route }) {
     { Pages: Pages, Style: tabBarStyle },
     { route, navigation },
   )
+
   return (
     <Stack.Navigator screenOptions={{ headerShown: false }}>
       <Stack.Screen name="MainPage" component={MainPage}></Stack.Screen>
@@ -57,6 +60,9 @@ function MainStack({ navigation, route }) {
       <Stack.Screen name="Profile" component={Profile} options={{ gestureEnabled: false, headerShown: false }} />
       <Stack.Screen name='CardsPage' component={CardsPage} options={{ gestureEnabled: false, headerShown: true, headerTitle:"My Cards" }}/>
       <Stack.Screen name='AdressesPage' component={AdressesPage} options={{ gestureEnabled: false, headerShown: true, headerTitle:"My Adresses"  }}/>
+       <Stack.Screen name='MyOrdersPage' component={MyOrdersPage}/>  
+       <Stack.Screen name='OrderDetails' component={OrderDetails}/>  
+
     </Stack.Navigator>
   )
 }

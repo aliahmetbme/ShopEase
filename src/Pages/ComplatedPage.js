@@ -3,10 +3,7 @@ import React, { useEffect } from 'react'
 import LottieView from 'lottie-react-native'
 import { useDispatch } from 'react-redux'
 const ComplatedPage = ({ navigation }) => {
-    const dispatch = useDispatch()
-    useEffect(() => {
-        dispatch({ type: "CLEAN_BAG" })
-    }, [])
+
     return (
 
         <View style={{ flex: 1, justifyContent: "center" }}>

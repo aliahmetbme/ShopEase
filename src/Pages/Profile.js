@@ -34,8 +34,12 @@ const Profile = ({ navigation }) => {
         }
     }
 
+    function goOrdersPage () {
+      navigation.navigate('MyOrdersPage')
+    }
+
     const ProfileSection = [
-        {"section": "Orders", "icon": "bag-handle-outline", "onPress": () => navigation.navigate('OrdersPage')},
+        {"section": "Orders", "icon": "bag-handle-outline", "onPress": goOrdersPage},
         {"section": "Saved Cards", "icon": "card-outline", "onPress": () => navigation.navigate('CardsPage')},
         {"section": "Saved Adress", "icon": "home-outline", "onPress": () => navigation.navigate('AdressesPage')},
         {"section": "Change Password", "icon": "chatbox-ellipses-outline", "onPress": changePassword},

@@ -7,7 +7,7 @@ import ProductsInBag from '../Components/ProductsInBag';
 
 
 const MyBag = ({ navigation }) => {
-  const dispatch = useDispatch()
+
   try {
     const data = useSelector((state) => state.bag);
     const total = data.bag.reduce((accumulator, currentItem) => accumulator + currentItem.price, 0);
@@ -56,7 +56,7 @@ const MyBag = ({ navigation }) => {
               <Text style={{color:"black",fontSize:20}}>{total} $</Text>
               <Text style={{ color: "green" }}>Delivery free !!</Text>
             </View>
-            <BagButton onPress={() => navigation.navigate("PaidPage")}/>
+            <BagButton onPress={() => navigation.navigate("PaidPage", {total:total})}/>
           </View>
         </SafeAreaView>
       );

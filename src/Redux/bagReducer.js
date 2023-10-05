@@ -28,27 +28,6 @@ export default (state = INITIAL_STATE, action) => {
                 };
             }
             return state; // Eğer action.payload zaten dizide varsa, state'i değiştirme
-        // case "UPDATE_AMOUNT":
-        //     const { id, newAmount, newPrice } = action.payload;
-        //     if (newAmount === 0) {
-        //         const updatedItems = state.bag.filter((item) => item.id !== id)
-
-        //         return { ...state, bag: updatedItems };
-        //     }
-        //     const updatedItems = state.bag.map(item => {
-        //         if (item.id === id) {
-        //             // Değiştirmek istediğiniz key'i güncelle
-
-        //             return { ...item, amount: newAmount, price: newPrice };
-        //         }
-        //         return item;
-        //     });
-
-        //     database().ref(`/${auth().currentUser.uid}/`).set({
-        //        bag: updatedItems
-        //     })
-
-        //     return { ...state, bag: updatedItems };
         case "UPDATE_AMOUNT":
             const { id, newAmount, newPrice } = action.payload;
             if (newAmount === 0) {

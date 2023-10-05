@@ -4,12 +4,18 @@ import ComplateShopping from "./ComplateShopping"
 import { Formik } from "formik"
 import Modal from 'react-native-modal'
 import SavedCardsPage from '../Pages/SavedCardsPage'
-import { useSelector } from 'react-redux'
+import { useSelector, useDispatch } from 'react-redux'
 import database from "@react-native-firebase/database"
 import auth from "@react-native-firebase/auth"
 import { RFPercentage } from 'react-native-responsive-fontsize'
 import SavedAdresses from '../Pages/SavedAdresses'
-const Address = ({ navigation }) => {
+const Address = ({ navigation, totalPrice }) => {
+
+    const [currentDateTime, setCurrentDateTime] = useState(new Date());
+    
+
+    const dispatch = useDispatch()
+    const ProductsInBag = useSelector((state) => state.bag);
     const card = useSelector((state) => state.id).cardId;
     const adress = useSelector((state) => state.adress).adress;
 
@@ -80,8 +86,51 @@ const Address = ({ navigation }) => {
             Alert.alert("Boş bırakılamaz")
             return;
         }
+        setCurrentDateTime(new Date())
+
+        const formattedDateTime = currentDateTime.toLocaleString();
+
+        database()
+        .ref(`/${auth().currentUser.uid}/orders`)
+        .once("value") // Veriyi bir kez al
+        .then((snapshot) => {
+            const data = snapshot.val();
+            let order_number = 0;
+
+            if (data !== null) {
+                // Veri varsa mevcut adres ayısını al
+                order_number = Object.keys(data).length;
+            }
+
+            // Yeni adres eklemek için bir nesne oluştur
+            const newOrder = {
+                [`orders${order_number + 1}`]: 
+                {
+                    ...values,
+                    products: ProductsInBag,
+                    price: totalPrice,
+                    time: formattedDateTime
+                }, // Yeni adres ekleyin
+            };
+
+            // Firebase Realtime Database'e yeni adres ekleyin
+            return database()
+                .ref(`/${auth().currentUser.uid}/orders`)
+                .update(newOrder);
+        })
+        .then(() => {
+           
+        })
+        .catch((error) => {
+            console.error("Adress eklenirken hata oluştu: ", error);
+        });
 
         navigation.navigate("ComplatedPage")
+
+
+
+        dispatch({ type: "CLEAN_BAG" })
+
     }
     return (
         <KeyboardAvoidingView
