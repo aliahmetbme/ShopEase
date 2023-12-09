@@ -62,12 +62,12 @@ I am proud of the end result and look forward to sharing this project with you
 
 
 
-# Redux Toolkit
-# Redux Async Thunk
-# Firebase
-# FirebaseRealTimeDatabase
-# FirebaseAuthentication
-# ReactNavigation
-# Axios
-# Redux.js
-# React Native
+Redux Toolkit
+Redux Async Thunk
+Firebase
+FirebaseRealTimeDatabase
+FirebaseAuthentication
+ReactNavigation
+Axios
+Redux.js
+React Native
